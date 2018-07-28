@@ -1,562 +1,549 @@
 <!DOCTYPE html>
 <html class="ios" style="font-size: 102.4px;">
-  
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <link href="/static/css/dish/dish/index_20180315_191215.css" rel="stylesheet" type="text/css">
-    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width,viewport-fit=cover" name="viewport">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="wap-font-scale" content="no">
-    <!--<base target="_self">-->
-    <base href="." target="_self">
-    <title>百惠超市</title>
-  </head>
-  
-  <body class="ios">
-    <div id="container"></div>
-    <div daojia="">
-      <section class="current">
-        <article class="scrolling">
-          <div class="content scroller">
-            <div class="a0x a0y">
-              <div class="wf a2" style="position: fixed;background: url(/img/h5_img/img/head-bg.jpg)">
-                <input type="hidden" name="tokencode" th:value="${tag}"/>
-                <input type="hidden" name="tagcode" th:value="${tagcode}"/>
-              	<div class="wk ">
-              		<i id="iconToSearch" class="wl wn"></i>
-              		<input type="search" style="max-width:90%" class="wj" id="search-keyword" placeholder="搜索百惠超市内商品" required="required">
-              		<i id="iconToClear" class="a0d wn"></i>
-              	</div>
-              	<span class="wo" onclick="searchName();">搜索</span></div>
-              <div class="a1f clearfix">
-                <ul class="a0z" >
-                  <li class="a10 a18" >
-                    <strong category="" data-id="all"   promotlable="" hassearchresult="" class="a13 a2 k"
-                            onclick="selectMenu(this);">
-                      <var class="a19" >热销</var>
-                    </strong>
-                  </li>
-                  <li class="a10" th:each="item : ${types}">
-                    <strong category="" th:attr="data-id=${item.id},data-name=${item.name}"  promotlable="" hassearchresult="" class="a13 a2 k"
-                            onclick="selectMenu(this);">
-                      <var class="a19" th:text="${item.name}"></var>
-                    </strong>
-                  </li>
-                </ul>
-                
-                <div class="a24 a1a">
-                  <div class="a1b xb " style="height: auto;">
-                    <div class="storePromptWrap a2" style="display: none;">没找到
-                      <span>“
+  <link href="/static/css/dish/dish/index_20180315_191215.css" rel="stylesheet" type="text/css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+
+  <meta content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width,viewport-fit=cover" name="viewport">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="wap-font-scale" content="no">
+  <!--<base target="_self">-->
+  <base href="." target="_self">
+  <title>百惠超市</title>
+</head>
+
+<body class="ios">
+<div id="container"></div>
+<div daojia="">
+  <section class="current">
+    <article class="scrolling">
+      <div class="content scroller">
+        <div class="a0x a0y">
+          <div class="wf a2" style="position: fixed;">
+            <input type="hidden" name="tokencode" th:value="${tag}"/>
+            <input type="hidden" name="tagcode" th:value="${tagcode}"/>
+            <div class="wk ">
+              <i id="iconToSearch" class="wl wn"></i>
+              <input type="search" style="max-width:90%" class="wj" id="search-keyword" placeholder="搜索百惠超市内商品" required="required">
+              <i id="iconToClear" class="a0d wn"></i>
+            </div>
+            <span class="wo" onclick="searchName();">搜索</span></div>
+          <div class="a1f clearfix">
+            <ul class="a0z" >
+              <li class="a10 a18" >
+                <strong category="" data-id="all"   promotlable="" hassearchresult="" class="a13 a2 k"
+                        onclick="selectMenu(this);">
+                  <var class="a19" >热销</var>
+                </strong>
+              </li>
+              <li class="a10" th:each="item : ${types}">
+                <strong category="" th:attr="data-id=${item.id},data-name=${item.name}"  promotlable="" hassearchresult="" class="a13 a2 k"
+                        onclick="selectMenu(this);">
+                  <var class="a19" th:text="${item.name}"></var>
+                </strong>
+              </li>
+            </ul>
+
+            <div class="a24 a1a">
+              <div class="a1b xb " style="height: auto;">
+                <div class="storePromptWrap a2" style="display: none;">没找到
+                  <span>“
                         <span class="searchKey"></span>”</span>,为您推荐
-                      <span>“
+                  <span>“
                         <span class="searchPrompt"></span>”</span></div>
-                    <div class="a1d ri">
-                      <ul id="dishcontent">
+                <div class="a1d ri">
+                  <ul id="dishcontent">
 
-                      </ul>
-                      <p class="ct">努力加载中
-                        <i></i>
-                      </p>
-                      <div class="wd" style="display: block;">
-                        <span>去看看其他分类吧</span></div>
-                    </div>
-                  </div>
+                  </ul>
+                  <p class="ct">努力加载中
+                    <i></i>
+                  </p>
+                  <div class="wd" style="display: block;">
+                    <span>去看看其他分类吧</span></div>
                 </div>
               </div>
             </div>
           </div>
-        </article>
-        <div class="a4q" style="bottom: 8.8%;">
-          <div class="a53">
-            <p class="a54" hidegatherlist=""></p>
-            <ul class="a55"></ul>
-          </div>
-          <div class="a50"></div>
-          <a  class="a4r outcartcontent show" carticon="" showup="" onclick="showGouWu();">
-            <i class="a4s"></i>
-          </a>
-          <div class="a4t " id="showPrice" pricearea="">
-            <div class="" id="priceshow">￥3.68</div>
-          </div>
-          <div class="a4t " id="a4tempty" style="display: none;" pricearea="">
-            <div class="a4v">购物车是空的</div>
-          </div>
-          <a class="a4w" qujiesuan="" href="javascript:void 0;" onclick="goPay();">去结算</a>
-          <div class="minicart-content" cartcontent="">
-            <div class="a58 ">
-              <span class="a6e a6f checked" id="checkall" checkallgoods="" onclick="checkall(this);">全选</span>
-              <p class="a6h">(已选3件)</p>
-              <a  class="a59" deleteall="" onclick="emptyGoods();">清空购物车</a></div>
-            <div class="a5b" cartitemlist="">
-              <div class="a5m single">
-                <ul class="minicart-goods-list single">
-
-                </ul>
-                <div class="a5n single" style="bottom:50px;"></div>
-              </div>
-            </div>
-            <div style="height:49px;" discountpromptmsgheight=""></div>
-            <div style="display:none" class="a6i" discountpromptmsg=""></div>
-          </div>
-          <div giftcontent=""></div>
-          <div class="a51" cartmask="" clstag="pageclick|keycount|cart_close_20160623_1|1"></div>
         </div>
-      </section>
-    </div>
-
-    <div id="empty" style="display: none;">
-      <div class="c qd ">
-      	<div class="alert">
-      		<div class="f">
-      			<p style="padding:30px 0 10px 0;">清空购物车中所有商品？</p>
-      		</div>
-      		<ul class="g i h">  <li index="0" class="j k" onclick="canleEmpty();">取消</li>
-      			<li index="1" onclick="emptyGoods1();">清空</li>
-      		</ul>
-      	</div>
       </div>
-    </div>
+    </article>
+    <div class="a4q" style="">
+      <div class="a53">
+        <p class="a54" hidegatherlist=""></p>
+        <ul class="a55"></ul>
+      </div>
+      <div class="a50"></div>
+      <a  class="a4r outcartcontent show" carticon="" showup="" onclick="showGouWu();">
+        <i class="a4s"></i>
+      </a>
+      <div class="a4t " id="showPrice" pricearea="">
+        <div class="" id="priceshow">￥3.68</div>
+      </div>
+      <div class="a4t " id="a4tempty" style="display: none;" pricearea="">
+        <div class="a4v">购物车是空的</div>
+      </div>
+      <a class="a4w" qujiesuan="" href="javascript:void 0;" onclick="goPay();">去结算</a>
+      <div class="minicart-content" cartcontent="">
+        <div class="a58 ">
+          <span class="a6e a6f checked" id="checkall" checkallgoods="" onclick="checkall(this);">全选</span>
+          <p class="a6h">(已选3件)</p>
+          <a  class="a59" deleteall="" onclick="emptyGoods();">清空购物车</a></div>
+        <div class="a5b" cartitemlist="">
+          <div class="a5m single">
+            <ul class="minicart-goods-list single">
 
-    <div id="no-login" style="display: none;">
-    	<div class="c qd ">
-    		<div class="alert"><h2>温馨提示</h2>
-    			<div class="f">您还没有登录</div>
-    			<ul class="g i h">
-    				<li index="0" class="j k" onclick="canclelogin();">取消</li>
-    				<li index="1" onclick="javascript:button.appLogin();">去登录</li>
-    			</ul>
-    		</div>
-    	</div>
-    </div>
-     <div class="weui-tabbar" style="z-index: 99999;position: absolute;bottom: 0;width: 100%;background-color: #fff">
-            <a href="/api/relation/h5list" class="weui-tabbar__item weui-bar__item--on"style="float: left; width: 49%;    text-align: center">
-                <div class="weui-tabbar__icon">
-                    <img src="/img/h5_img/img/svg/foot-2-1.png" alt="">
-                </div>
-                <p class="weui-tabbar__label">分类</p>
-            </a>
-            <a href="/api/CustnmerH5/home_h5" class="weui-tabbar__item"style="float: left; width: 49%;    text-align: center">
-                <div class="weui-tabbar__icon">
-                    <img src="/img/h5_img/img/svg/foot-5.png" alt="">
-                </div>
-                <p class="weui-tabbar__label"id="my_home" >我的</p>
-            </a>
+            </ul>
+            <div class="a5n single" style="bottom:50px;"></div>
+          </div>
         </div>
-    <div class="a0b" style="display:none;" node-type="bottomMenuBigBg"></div>
-    <a class="a0a" clicktotop="" href="javascript:void 0;" style="bottom: 48px; display: none;"></a>
-  </body>
+        <div style="height:49px;" discountpromptmsgheight=""></div>
+        <div style="display:none" class="a6i" discountpromptmsg=""></div>
+      </div>
+      <div giftcontent=""></div>
+      <div class="a51" cartmask="" clstag="pageclick|keycount|cart_close_20160623_1|1"></div>
+    </div>
+  </section>
+</div>
 
-  <script type="text/javascript" charset="utf-8">
+<div id="empty" style="display: none;">
+  <div class="c qd ">
+    <div class="alert">
+      <div class="f">
+        <p style="padding:30px 0 10px 0;">清空购物车中所有商品？</p>
+      </div>
+      <ul class="g i h">  <li index="0" class="j k" onclick="canleEmpty();">取消</li>
+        <li index="1" onclick="emptyGoods1();">清空</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-      var totalNum = 0;
-      var totalMoney = 0.00;
-      var options = new Array();
+<div id="no-login" style="display: none;">
+  <div class="c qd ">
+    <div class="alert"><h2>温馨提示</h2>
+      <div class="f">您还没有登录</div>
+      <ul class="g i h">
+        <li index="0" class="j k" onclick="canclelogin();">取消</li>
+        <li index="1" onclick="javascript:button.appLogin();">去登录</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-      $(function(){
-          $('.clearfix ul li').find('.Box label').each(function(){
-              totalNum += parseInt($(this).text()==''?'0':$(this).text());
-          });
-          if(totalNum==0){
-              $('.outcartcontent i').hide();
-              $('#showPrice').hide();
-              $('#a4tempty').show();
-              $('.a4w').addClass("disabled");
-          }
-          queryDish(10086,'');
-          options = JSON.parse(sessionStorage.getItem('option'))==null?new Array():JSON.parse(sessionStorage.getItem('option'));
-          // if(options!==null && options.length>0){
-          //     for(var i=0;i<options.length;i++){
-          //         var item = options[i];
-          //         totalNum += item.num;
-          //         totalMoney += parseFloat(item.containerPrice);
-          //     }
-          //     $('.outcartcontent i').show();
-          //     $('#showPrice').show();
-          //     $('#priceshow').show();
-          //     $('#a4tempty').hide();
-          //     $('.a4w').removeClass("disabled");
-          //     $('.outcartcontent').addClass('light');
-          //     $('.outcartcontent .a4s').text(totalNum);
-          //     $('.a6h').text("(已选"+totalNum+"件)");
-          //     $('#priceshow').text('￥'+abs(totalMoney));
-          // }
+<div class="a0b" style="display:none;" node-type="bottomMenuBigBg"></div>
+<a class="a0a" clicktotop="" href="javascript:void 0;" style="bottom: 48px; display: none;"></a>
+</body>
 
-          $('.a51').click(function () {
-              showGouWu();
-          });
-      });
+<script type="text/javascript" charset="utf-8">
 
-      function queryDish(type,name) {
-          var html = '';
+    var totalNum = 0;
+    var totalMoney = 0.00;
+    var options = new Array();
 
-          $.ajax({
-              url:"/api/relation/goodsList",
-              data:{categoryId:type,name:name},
-              dataType:'json',
-              async:true,
-              success:function(result){
-                  $('#dishcontent').empty();
-                  var items = result.data;
-                  for(var i=0;i<items.length;i++){
-                      var item = items[i];
-                      item.var04 = 0;
-                      if(options.length>0){
-                          for(var j=0;j<options.length;j++){
-                              if(item.id == options[j].id){
-                                  item.var04 = options[j].num;
-                              }
-                          }
-                      }
-                      html += '<li class="" id="dish_'+item.id+'">'+
-                          '<a href="javascript:void(0);" class="linksGoods a2 ">'+
-                          '<span class="af3">'+
-                          '<img src="'+item.goodsImg+'" class="pic" onerror="this.src=&quot;//static-o2o.360buyimg.com/daojia/new/images/index_sudoku_default_2.0.png&quot;"></span>'+
-                          '<dl>'+
-                          '<dt class="dishname">'+item.name+'</dt>'+
-                          '<dd class="af5">'+
-                          '<strong class="line_pre" ></strong>'+
-                          '<var class="line_split"></var>'+
-                          '<dd class="a2x store-good-price-wrap-padding">'+
-                          '<label>'+
-                          '<em>￥</em>'+abs(item.containerPrice)+'</label>'+
-                          '</dd>'+
-                          '</dl>'+
-                          '</a>'+
-                          '<div class="Box">';
-                      if(item.var04==null || item.var04 == '' || item.var04 == '0'){
-                          html+= '<span class="reduce hide" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" onclick="reduceNum(this)">减</span>'+
-                              '<label class="hide">0</label>';
-                      }else{
-                          html+='<span class="reduce" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" onclick="reduceNum(this)">减</span>'+
-                              '<label class="show">'+item.var04+'</label>';
-                      }
-                      html+='<span class="add storeSearchCart" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'" data-price="'+item.containerPrice+'" onclick="addNum(this)">加</span></div>'+
-                          '</li>';
-                  }
-                  $('#dishcontent').append(html);
-              }
-          });
-      }
+    $(function(){
+        $('.clearfix ul li').find('.Box label').each(function(){
+            totalNum += parseInt($(this).text()==''?'0':$(this).text());
+        });
+        if(totalNum==0){
+            $('.outcartcontent i').hide();
+            $('#showPrice').hide();
+            $('#a4tempty').show();
+            $('.a4w').addClass("disabled");
+        }
+        queryDish(10086,'');
+        options = JSON.parse(sessionStorage.getItem('option'))==null?new Array():JSON.parse(sessionStorage.getItem('option'));
+        // if(options!==null && options.length>0){
+        //     for(var i=0;i<options.length;i++){
+        //         var item = options[i];
+        //         totalNum += item.num;
+        //         totalMoney += parseFloat(item.containerPrice);
+        //     }
+        //     $('.outcartcontent i').show();
+        //     $('#showPrice').show();
+        //     $('#priceshow').show();
+        //     $('#a4tempty').hide();
+        //     $('.a4w').removeClass("disabled");
+        //     $('.outcartcontent').addClass('light');
+        //     $('.outcartcontent .a4s').text(totalNum);
+        //     $('.a6h').text("(已选"+totalNum+"件)");
+        //     $('#priceshow').text('￥'+abs(totalMoney));
+        // }
 
-      function selectMenu(e) {
-          var item = $(e).attr('data-id');
-          $('.clearfix ul li').removeClass('a18');
-          $(e).parent().addClass('a18');
-          queryDish($(e).attr('data-id'),'');
-      }
+        $('.a51').click(function () {
+            showGouWu();
+        });
+    });
 
-      function addNum(e){
-          var type = "0";
+    function queryDish(type,name) {
+        var html = '';
 
-          var itemE = $(e).siblings('label');
-          if(itemE.length == 0){
-              itemE = $(e).siblings('.a61');
-              type = '1';
-          }
-          var num = $(itemE).text();
-          if(num == 0){
-              $(itemE).removeClass('hide').addClass('show');
-              $(e).siblings('.reduce').removeClass('hide');
-          }
-          itemE.text(parseInt(num)+1);
-          buildGoods(e,parseInt(num)+1);
+        $.ajax({
+            url:"/api/relation/goodsList",
+            data:{categoryId:type,name:name},
+            dataType:'json',
+            async:true,
+            success:function(result){
+                $('#dishcontent').empty();
+                var items = result.data;
+                for(var i=0;i<items.length;i++){
+                    var item = items[i];
+                    item.var04 = 0;
+                    if(options.length>0){
+                        for(var j=0;j<options.length;j++){
+                            if(item.id == options[j].id){
+                                item.var04 = options[j].num;
+                            }
+                        }
+                    }
+                    html += '<li class="" id="dish_'+item.id+'">'+
+                        '<a href="javascript:void(0);" class="linksGoods a2 ">'+
+                        '<span class="af3">'+
+                        '<img src="'+item.goodsImg+'" class="pic" onerror="this.src=&quot;//static-o2o.360buyimg.com/daojia/new/images/index_sudoku_default_2.0.png&quot;"></span>'+
+                        '<dl>'+
+                        '<dt class="dishname">'+item.name+'</dt>'+
+                        '<dd class="af5">'+
+                        '<strong class="line_pre" ></strong>'+
+                        '<var class="line_split"></var>'+
+                        '<dd class="a2x store-good-price-wrap-padding">'+
+                        '<label>'+
+                        '<em>￥</em>'+abs(item.containerPrice)+'</label>'+
+                        '</dd>'+
+                        '</dl>'+
+                        '</a>'+
+                        '<div class="Box">';
+                    if(item.var04==null || item.var04 == '' || item.var04 == '0'){
+                        html+= '<span class="reduce hide" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" onclick="reduceNum(this)">减</span>'+
+                            '<label class="hide">0</label>';
+                    }else{
+                        html+='<span class="reduce" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" onclick="reduceNum(this)">减</span>'+
+                            '<label class="show">'+item.var04+'</label>';
+                    }
+                    html+='<span class="add storeSearchCart" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'" data-price="'+item.containerPrice+'" onclick="addNum(this)">加</span></div>'+
+                        '</li>';
+                }
+                $('#dishcontent').append(html);
+            }
+        });
+    }
 
-          $('.outcartcontent i').show();
-          $('#showPrice').show();
-          $('#priceshow').show();
-          $('#a4tempty').hide();
-          $('.a4w').removeClass("disabled");
-          $('.outcartcontent').addClass('light');
-          $('.outcartcontent .a4s').text(++totalNum);
-          $('.a6h').text("(已选"+totalNum+"件)");
+    function selectMenu(e) {
+        var item = $(e).attr('data-id');
+        $('.clearfix ul li').removeClass('a18');
+        $(e).parent().addClass('a18');
+        queryDish($(e).attr('data-id'),'');
+    }
 
-          totalMoney += parseFloat(parseFloat($(e).attr('data-price')).toFixed(2));
-          $('#priceshow').text('￥'+abs(totalMoney));
-      }
+    function addNum(e){
+        var type = "0";
 
+        var itemE = $(e).siblings('label');
+        if(itemE.length == 0){
+            itemE = $(e).siblings('.a61');
+            type = '1';
+        }
+        var num = $(itemE).text();
+        if(num == 0){
+            $(itemE).removeClass('hide').addClass('show');
+            $(e).siblings('.reduce').removeClass('hide');
+        }
+        itemE.text(parseInt(num)+1);
+        buildGoods(e,parseInt(num)+1);
 
-      function reduceNum(e){
-          var type = "0";
-          var itemE = $(e).siblings('label');
-          if(itemE.length == 0){
-              itemE = $(e).siblings('.a61');
-              type = "1";
-          }
-          var num = $(itemE).text();
-          var currentNum;
-          if(num>=1){
-              currentNum = parseInt(num)-1;
-              $(itemE).text(currentNum);
-          }
-          if(currentNum == 0 && type !='1'){
-              $(e).removeClass('show').addClass('hide');
-              $(itemE).removeClass('show').addClass('hide');
-          }
-          if(totalNum>0 && currentNum >=0){
-              $('.outcartcontent .a4s').text(--totalNum);
-          }
-          $('.a6h').text("(已选"+totalNum+"件)");
-          if(type=='1' && currentNum == 0){
-              $(itemE).parent().remove();
-          }
+        $('.outcartcontent i').show();
+        $('#showPrice').show();
+        $('#priceshow').show();
+        $('#a4tempty').hide();
+        $('.a4w').removeClass("disabled");
+        $('.outcartcontent').addClass('light');
+        $('.outcartcontent .a4s').text(++totalNum);
+        $('.a6h').text("(已选"+totalNum+"件)");
 
-          if($('.minicart-goods-list').children().length==0 && type==1){
-              $('div.minicart-content').attr("style","").removeClass("showGouWu");
-              $('.a51').hide();
-              $('.outcartcontent').removeClass('light');
-              $('.outcartcontent').remove('li');
-              $('.a4t').show();
-              $('.a4w').addClass("disabled");
-              $('#priceshow').hide();
-              $('.outcartcontent i').hide();
-              $('.clearfix ul li').find('.Box label').each(function(){
-                  $(this).text(0);
-                  $(this).removeClass('show').addClass('hide');
-                  $(this).siblings('.reduce').addClass('hide');
-                  $(this).siblings('label').removeClass('show').addClass('hide');
-              });
-          }
-          totalMoney -= parseFloat(parseFloat($(e).attr('data-price')).toFixed());
-          $('#priceshow').text('￥'+abs(totalMoney));
-          buildGoods(e,currentNum);
+        totalMoney += parseFloat(parseFloat($(e).attr('data-price')).toFixed(2));
+        $('#priceshow').text('￥'+abs(totalMoney));
+    }
 
 
-          if(options.length==0){
-              $('div.minicart-content').attr("style","").removeClass("showGouWu");
-              $('.a51').hide();
-              $('.outcartcontent').removeClass('light');
-              $('.outcartcontent').remove('li');
-              $('.a4t').show();
-              $('.a4w').addClass("disabled");
-              $('#priceshow').hide();
-              $('.outcartcontent i').hide();
-          }
-      }
+    function reduceNum(e){
+        var type = "0";
+        var itemE = $(e).siblings('label');
+        if(itemE.length == 0){
+            itemE = $(e).siblings('.a61');
+            type = "1";
+        }
+        var num = $(itemE).text();
+        var currentNum;
+        if(num>=1){
+            currentNum = parseInt(num)-1;
+            $(itemE).text(currentNum);
+        }
+        if(currentNum == 0 && type !='1'){
+            $(e).removeClass('show').addClass('hide');
+            $(itemE).removeClass('show').addClass('hide');
+        }
+        if(totalNum>0 && currentNum >=0){
+            $('.outcartcontent .a4s').text(--totalNum);
+        }
+        $('.a6h').text("(已选"+totalNum+"件)");
+        if(type=='1' && currentNum == 0){
+            $(itemE).parent().remove();
+        }
+
+        if($('.minicart-goods-list').children().length==0 && type==1){
+            $('div.minicart-content').attr("style","").removeClass("showGouWu");
+            $('.a51').hide();
+            $('.outcartcontent').removeClass('light');
+            $('.outcartcontent').remove('li');
+            $('.a4t').show();
+            $('.a4w').addClass("disabled");
+            $('#priceshow').hide();
+            $('.outcartcontent i').hide();
+            $('.clearfix ul li').find('.Box label').each(function(){
+                $(this).text(0);
+                $(this).removeClass('show').addClass('hide');
+                $(this).siblings('.reduce').addClass('hide');
+                $(this).siblings('label').removeClass('show').addClass('hide');
+            });
+        }
+        totalMoney -= parseFloat(parseFloat($(e).attr('data-price')).toFixed());
+        $('#priceshow').text('￥'+abs(totalMoney));
+        buildGoods(e,currentNum);
 
 
-      //创建数据
-      function buildGoods(e,num){
-          var item = {};
-          if(options.length>0){
-              var strid = "";
-              for(var i=0;i<options.length;i++){
-                  strid += options[i].id +",";
-              }
-              if(strid.indexOf(($(e).attr('data-id')+''))>-1){
-                  for(var i=0;i<options.length;i++){
-                      var item1 = options[i];
-                      if(item1.id==$(e).attr('data-id')){
-                          if(num==0){
-                              options.splice(i,1);
-                          }else{
-                              item1.num = num;
-                          }
-                      }
-                  }
-              }else{
-                  item.id = $(e).attr('data-id');
-                  item.name = $(e).attr('data-name');
-                  item.goodsImg = $(e).attr('data-pic');
-                  item.containerPrice = $(e).attr('data-price');
-                  item.num = num;
-                  item.tag = 'checked';
-                  options.push(item);
-              }
-          }else{
-              item.id = $(e).attr('data-id');
-              item.name = $(e).attr('data-name');
-              item.goodsImg = $(e).attr('data-pic');
-              item.containerPrice = $(e).attr('data-price');
-              item.num = num;
-              item.tag = 'checked';
-              options.push(item);
-          }
-
-      }
-      function searchName() {
-          var name = $('#search-keyword').val();
-          queryDish('',name);
-      }
+        if(options.length==0){
+            $('div.minicart-content').attr("style","").removeClass("showGouWu");
+            $('.a51').hide();
+            $('.outcartcontent').removeClass('light');
+            $('.outcartcontent').remove('li');
+            $('.a4t').show();
+            $('.a4w').addClass("disabled");
+            $('#priceshow').hide();
+            $('.outcartcontent i').hide();
+        }
+    }
 
 
+    //创建数据
+    function buildGoods(e,num){
+        var item = {};
+        if(options.length>0){
+            var strid = "";
+            for(var i=0;i<options.length;i++){
+                strid += options[i].id +",";
+            }
+            if(strid.indexOf(($(e).attr('data-id')+''))>-1){
+                for(var i=0;i<options.length;i++){
+                    var item1 = options[i];
+                    if(item1.id==$(e).attr('data-id')){
+                        if(num==0){
+                            options.splice(i,1);
+                        }else{
+                            item1.num = num;
+                        }
+                    }
+                }
+            }else{
+                item.id = $(e).attr('data-id');
+                item.name = $(e).attr('data-name');
+                item.goodsImg = $(e).attr('data-pic');
+                item.containerPrice = $(e).attr('data-price');
+                item.num = num;
+                item.tag = 'checked';
+                options.push(item);
+            }
+        }else{
+            item.id = $(e).attr('data-id');
+            item.name = $(e).attr('data-name');
+            item.goodsImg = $(e).attr('data-pic');
+            item.containerPrice = $(e).attr('data-price');
+            item.num = num;
+            item.tag = 'checked';
+            options.push(item);
+        }
 
-      function showGouWu(){
-          if(!$('.outcartcontent').hasClass('light')){
-              return;
-          }
+    }
+    function searchName() {
+        var name = $('#search-keyword').val();
+        queryDish('',name);
+    }
 
-          if($('div.minicart-content').hasClass('showGouWu')){
-              $('div.minicart-content').attr("style","").removeClass("showGouWu");
-              $('.a51').hide();
-          }else{
-              $('div.minicart-content').attr("style","transform: translateY(-100%); display: block;").addClass("showGouWu");
-              $('.a51').show();
-              $('.a6h').text("(已选"+totalNum+"件)");
-          }
 
-          var html = '';
-          if($('.minicart-goods-list').children().size()==0){
-              for(var i=0;i<options.length;i++){
-                  var item = options[i];
-                  html += '<li class="a5o single " id="gowu_'+item.id+'">'+
-                      '<span class="a6e a5p checked"  onclick="checkitem(this);"></span>'+
-                      '<a class="a5v" href="javascript:void(0)" onclick="">'+
-                      '<table class="a5w">'+
-                      '<tbody>'+
-                      '<tr>'+
-                      '<td style="width:62px;">'+
-                      '<img class="a5x" src="'+item.goodsImg+'"></td>'+
-                      '<td>'+
-                      '<div class="a60">'+item.name+'</div>'+
-                      '<div class="a69">'+
-                      '<div class="a5q" style="margin-right:5px">￥'+abs(item.containerPrice)+'</div>'+
-                      '</div>'+
-                      '</td>'+
-                      '</tr>'+
-                      '</tbody>'+
-                      '</table>'+
-                      '</a>'+
-                      '<a style="" onclick="reduceNum(this);" class="a5y" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" minusgoods="" tap=""></a>'+
-                      '<em style="" class="a61">'+item.num+'</em>'+
-                      '<a onclick="addNum(this);" class="a5z " data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" addgoods="" tap=""></a>'+
-                      '</li>';
-              }
-              $('.minicart-goods-list').append(html);
-          }
-      }
 
-      function goPay(){
-          //disabled
-          if($('.a4w').hasClass('disabled')){
-              return;
-          }else{
-              // if($('input[name=tokencode]').val()=='true'){
-              //       $('#no-login').css('display','');
-              // }else{
+    function showGouWu(){
+        if(!$('.outcartcontent').hasClass('light')){
+            return;
+        }
 
-                  if($('.minicart-goods-list').children().size()>0){
-                      $('.minicart-goods-list li').each(function(){
-                          for(var i=0;i<options.length;i++){
-                              var item = options[i];
-                              if(!$('#gowu_'+item.id).find('span.a6e').hasClass('checked')){
-                                  item.tag = 'unchecked';
-                              }
-                          }
-                      });
-                  }
-                  sessionStorage.setItem("tagcode",$('input[name=tagcode]').val());
-                  sessionStorage.setItem("option",JSON.stringify(options));
-                  window.location.href="/api/relation/dishesDetail";
+        if($('div.minicart-content').hasClass('showGouWu')){
+            $('div.minicart-content').attr("style","").removeClass("showGouWu");
+            $('.a51').hide();
+        }else{
+            $('div.minicart-content').attr("style","transform: translateY(-100%); display: block;").addClass("showGouWu");
+            $('.a51').show();
+            $('.a6h').text("(已选"+totalNum+"件)");
+        }
 
-              // }
-          }
-      }
+        var html = '';
+        if($('.minicart-goods-list').children().size()==0){
+            for(var i=0;i<options.length;i++){
+                var item = options[i];
+                html += '<li class="a5o single " id="gowu_'+item.id+'">'+
+                    '<span class="a6e a5p checked"  onclick="checkitem(this);"></span>'+
+                    '<a class="a5v" href="javascript:void(0)" onclick="">'+
+                    '<table class="a5w">'+
+                    '<tbody>'+
+                    '<tr>'+
+                    '<td style="width:62px;">'+
+                    '<img class="a5x" src="'+item.goodsImg+'"></td>'+
+                    '<td>'+
+                    '<div class="a60">'+item.name+'</div>'+
+                    '<div class="a69">'+
+                    '<div class="a5q" style="margin-right:5px">￥'+abs(item.containerPrice)+'</div>'+
+                    '</div>'+
+                    '</td>'+
+                    '</tr>'+
+                    '</tbody>'+
+                    '</table>'+
+                    '</a>'+
+                    '<a style="" onclick="reduceNum(this);" class="a5y" data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" minusgoods="" tap=""></a>'+
+                    '<em style="" class="a61">'+item.num+'</em>'+
+                    '<a onclick="addNum(this);" class="a5z " data-id="'+item.id+'" data-name="'+item.name+'" data-pic="'+item.goodsImg+'"  data-price="'+item.containerPrice+'" addgoods="" tap=""></a>'+
+                    '</li>';
+            }
+            $('.minicart-goods-list').append(html);
+        }
+    }
 
-      function checkitem(e) {
-          if($(e).hasClass('checked')){
-              $(e).removeClass('checked');
-          }else{
-              $(e).addClass('checked');
-          }
+    function goPay(){
+        //disabled
+        if($('.a4w').hasClass('disabled')){
+            return;
+        }else{
+            // if($('input[name=tokencode]').val()=='true'){
+            //       $('#no-login').css('display','');
+            // }else{
 
-          var hascheck = 0;
-          $('.minicart-goods-list li').each(function () {
-              if($(this).find('span.a6e').hasClass('checked')){
-                  ++hascheck;
-              }
-          });
+            if($('.minicart-goods-list').children().size()>0){
+                $('.minicart-goods-list li').each(function(){
+                    for(var i=0;i<options.length;i++){
+                        var item = options[i];
+                        if(!$('#gowu_'+item.id).find('span.a6e').hasClass('checked')){
+                            item.tag = 'unchecked';
+                        }
+                    }
+                });
+            }
+            sessionStorage.setItem("tagcode",$('input[name=tagcode]').val());
+            sessionStorage.setItem("option",JSON.stringify(options));
+            window.location.href="/api/relation/payDetail";
 
-          if(hascheck != $('.minicart-goods-list').children().size()){
-              $('#checkall').removeClass('checked');
-          }else{
-              $('#checkall').addClass('checked');
-          }
-          canPay();
-      }
+            // }
+        }
+    }
 
-      function checkall(e) {
-          if($(e).hasClass('checked')){
-              $(e).removeClass('checked');
-              $('.minicart-goods-list li').each(function () {
-                  $(this).find('span.a6e').removeClass('checked');
-              });
-          }else{
-              $(e).addClass('checked');
-              $('.minicart-goods-list li').each(function () {
-                  $(this).find('span.a6e').addClass('checked');
-              });
-          }
-          canPay();
-      }
+    function checkitem(e) {
+        if($(e).hasClass('checked')){
+            $(e).removeClass('checked');
+        }else{
+            $(e).addClass('checked');
+        }
 
-      function canPay(){
-          var sa = false;
-          $('.minicart-goods-list li').each(function(){
-               if($(this).find('span.a6e').hasClass("checked")){
-                   sa = true;
-               }
-          });
-          if(!sa){
-              $('.outcartcontent i').hide();
-              $('.outcartcontent').removeClass('light');
-              $('#showPrice').hide();
-              $('#a4tempty').show();
-              $('.a4w').addClass("disabled");
-          }else{
-              $('.outcartcontent i').show();
-              $('.outcartcontent').addClass('light');
-              $('#showPrice').show();
-              $('#a4tempty').hide();
-              $('.a4w').removeClass("disabled");
-          }
-      }
+        var hascheck = 0;
+        $('.minicart-goods-list li').each(function () {
+            if($(this).find('span.a6e').hasClass('checked')){
+                ++hascheck;
+            }
+        });
 
-      function emptyGoods(){
-          totalNum =0;
-          $("#empty").show();
-      }
+        if(hascheck != $('.minicart-goods-list').children().size()){
+            $('#checkall').removeClass('checked');
+        }else{
+            $('#checkall').addClass('checked');
+        }
+        canPay();
+    }
 
-      //清空购物车
-      function emptyGoods1(){
-          $('div.minicart-content').attr("style","").removeClass("showGouWu");
-          $('.a51').hide();
-          $('.outcartcontent').removeClass('light');
-          $('.outcartcontent').remove('li');
-          $('.a4t').show();
-          $('.a4w').addClass("disabled");
-          $('#priceshow').hide();
-          $('.outcartcontent i').hide();
-          $('.clearfix ul li').find('.Box label').each(function(){
-              $(this).text(0);
-              $(this).removeClass('show').addClass('hide');
-              $(this).siblings('.reduce').addClass('hide');
-              $(this).siblings('label').removeClass('show').addClass('hide');
-          });
-          $("#empty").hide();
+    function checkall(e) {
+        if($(e).hasClass('checked')){
+            $(e).removeClass('checked');
+            $('.minicart-goods-list li').each(function () {
+                $(this).find('span.a6e').removeClass('checked');
+            });
+        }else{
+            $(e).addClass('checked');
+            $('.minicart-goods-list li').each(function () {
+                $(this).find('span.a6e').addClass('checked');
+            });
+        }
+        canPay();
+    }
 
-          options = new Array();
-          $('.minicart-goods-list').empty();
-          totalMoney = 0.00;
-      }
+    function canPay(){
+        var sa = false;
+        $('.minicart-goods-list li').each(function(){
+            if($(this).find('span.a6e').hasClass("checked")){
+                sa = true;
+            }
+        });
+        if(!sa){
+            $('.outcartcontent i').hide();
+            $('.outcartcontent').removeClass('light');
+            $('#showPrice').hide();
+            $('#a4tempty').show();
+            $('.a4w').addClass("disabled");
+        }else{
+            $('.outcartcontent i').show();
+            $('.outcartcontent').addClass('light');
+            $('#showPrice').show();
+            $('#a4tempty').hide();
+            $('.a4w').removeClass("disabled");
+        }
+    }
 
-      function canclelogin(){
-          $('#no-login').css('display','none');
-      }
+    function emptyGoods(){
+        totalNum =0;
+        $("#empty").show();
+    }
 
-      function canleEmpty(){
-          $("#empty").hide();
-      }
-      abs = function(val){
-          //金额转换 分->元 保留2位小数 并每隔3位用逗号分开 1,234.56
-          var str = (val/100).toFixed(2) + '';
-          var intSum = str.substring(0,str.indexOf(".")).replace( /\B(?=(?:\d{3})+$)/g, ',' );//取到整数部分
-          var dot = str.substring(str.length,str.indexOf("."))//取到小数部分搜索
-          var ret = intSum + dot;
-          return ret;
-      }
-  </script>
+    //清空购物车
+    function emptyGoods1(){
+        $('div.minicart-content').attr("style","").removeClass("showGouWu");
+        $('.a51').hide();
+        $('.outcartcontent').removeClass('light');
+        $('.outcartcontent').remove('li');
+        $('.a4t').show();
+        $('.a4w').addClass("disabled");
+        $('#priceshow').hide();
+        $('.outcartcontent i').hide();
+        $('.clearfix ul li').find('.Box label').each(function(){
+            $(this).text(0);
+            $(this).removeClass('show').addClass('hide');
+            $(this).siblings('.reduce').addClass('hide');
+            $(this).siblings('label').removeClass('show').addClass('hide');
+        });
+        $("#empty").hide();
+
+        options = new Array();
+        $('.minicart-goods-list').empty();
+        totalMoney = 0.00;
+    }
+
+    function canclelogin(){
+        $('#no-login').css('display','none');
+    }
+
+    function canleEmpty(){
+        $("#empty").hide();
+    }
+    abs = function(val){
+        //金额转换 分->元 保留2位小数 并每隔3位用逗号分开 1,234.56
+        var str = (val/100).toFixed(2) + '';
+        var intSum = str.substring(0,str.indexOf(".")).replace( /\B(?=(?:\d{3})+$)/g, ',' );//取到整数部分
+        var dot = str.substring(str.length,str.indexOf("."))//取到小数部分搜索
+        var ret = intSum + dot;
+        return ret;
+    }
+</script>
 </html>
