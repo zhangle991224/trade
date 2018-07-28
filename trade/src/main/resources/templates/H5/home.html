@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Bootstrap 模板</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/h5_css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/h5_css/main.css">
+    <link rel="stylesheet" href="/css/h5_css/home.css">
+    <link rel="stylesheet" href="/css/h5_css/theme-color.css">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<footer class="zyw-footer">
+    <div class="zyw-container white-bgcolor">
+        <div class="weui-tabbar">
+           <!-- <a href="../shop1/index.html" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="img/svg/foot-1.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">首页</p>
+            </a>-->
+            <a href="/api/CustnmerH5/Class_h5"class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="/img/h5_img/img/svg/foot-2.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">分类</p>
+            </a>
+           <!-- <a href="../shop3/find.html" class="weui-tabbar__item">
+                <div class="weui-tabbar__icon">
+                    <img src="img/svg/foot-3.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">发现</p>
+            </a>-->
+            <a href="/api/CustnmerH5/cart_h5" class="weui-tabbar__item">
+               <!--  <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>-->
+                <div class="weui-tabbar__icon">
+                    <img src="/img/h5_img/img/svg/foot-4.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">购物车</p>
+            </a>
+            <a href="/api/CustnmerH5/home_h5" class="weui-tabbar__item weui-bar__item--on">
+                <div class="weui-tabbar__icon">
+                    <img src="/img/h5_img/img/svg/foot-5-1.png" alt="">
+                </div>
+                <p class="weui-tabbar__label">我的</p>
+            </a>
+        </div>
+    </div>
+</footer>
+<section class="zyw-container">
+    <div class="home-head white-bgcolor clearfix">
+        <div class="head-img">
+            <div class="head-logo"><img src="/img/h5_img/img/mylogo.jpg" alt=""></div>
+            <div class="head-name">抓耗子的猫</div>
+            <div class="head-icon">
+                <a href=""><img src="/img/h5_img/img/svg/home-cog.png" alt=""></a>
+                <a href=""><img src="/img/h5_img/img/svg/home-message.png" alt=""></a>
+            </div>
+        </div>
+        <div class="head-cont">
+            <div class="weui-flex">
+                <div class="weui-flex__item"><a href="star.html"><span>我的积分</span></a></div>
+				<div class="kj-sh-zi1" style="width: 40%;overflow: hidden;border-radius: 30px;background: #e01222;padding: .06rem;margin-top: .1rem;">
+					<img style="float:left; margin-left: 8px" src="/img/h5_img/img/images/jinbi.png">
+					<p style="font-size: 2rem;color: #fff;margin-left: .08rem;margin-top: 6px; ">10</p>
+				</div>
+                <!--<div class="weui-flex__item"><a href="star.html"><p>6</p><span>我的喜欢</span></a></div>-->
+                <div class="weui-flex__item"><a href="star.html"><p></p><span></span></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="home-cont weui-cells mt-625">
+        <a class="weui-cell weui-cell_access" href="/api/CustnmerH5/wodedingdan_h5">
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="/img/h5_img/img/svg/home-1.png" alt=""> 全部订单</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+                查看所有已购宝贝
+            </div>
+        </a>
+    </div>
+    <div class="weui-flex home-order white-bgcolor mb-625">
+        <a href="/../login.html" class="weui-flex__item">
+            <div class="weui-flex__icon">
+                <img src="/img/h5_img/img/svg/home-dfk.png" alt="">
+            </div>
+            <p class="weui-flex__label">店家入口</p>
+        </a>
+        <a href="order.html" class="weui-flex__item">
+            <div class="weui-flex__icon">
+                <img src="/img/h5_img/img/svg/home-dfh.png" alt="">
+            </div>
+            <p class="weui-flex__label">管理员入口</p>
+        </a>
+		 <a href="order.html" class="weui-flex__item">
+            <div class="weui-flex__icon">
+                <img src="/img/h5_img/img/svg/home-dsh.png" alt="">
+            </div>
+            <p class="weui-flex__label">订单查询</p>
+        </a>
+       <!-- <a href="order.html" class="weui-flex__item">
+            <div class="weui-flex__icon">
+                <img src="img/svg/home-dsh.png" alt="">
+            </div>
+            <p class="weui-flex__label">待收货</p>
+        </a>
+        <a href="order.html" class="weui-flex__item">
+            <div class="weui-flex__icon">
+                <img src="img/svg/home-dpj.png" alt="">
+            </div>
+            <p class="weui-flex__label">待评价</p>
+        </a>
+        <a href="javascript:;" class="weui-flex__item">
+            <div class="weui-flex__icon">
+                <img src="img/svg/home-tk.png" alt="">
+            </div>
+            <p class="weui-flex__label">退款/售后</p>
+        </a>-->
+    </div>
+    <!--<div class="home-cont weui-cells mb-625">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="img/svg/home-2.png" alt=""> 酷币</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+                当前可用酷币30酷币
+            </div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="coupon.html">
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="img/svg/home-3.png" alt=""> 优惠券</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+                2张
+            </div>
+        </a>
+    </div>-->
+    <div class="home-cont weui-cells mb-625">
+	    <a class="weui-cell weui-cell_access" href="/api/CustnmerH5/shouhuodizhi_h5"><!-- onClick="shouhuodizhi()href="H5/shouhuodizhi.html"" -->
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="/img/h5_img/img/svg/ge6.png" alt=""> 收货地址</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+            </div>
+        </a>
+        <a class="weui-cell weui-cell_access"href="/api/CustnmerH5/wodezhiliao_h5" >
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="/img/h5_img/img/svg/home-4.png" alt=""> 我的资料</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+            </div>
+        </a>
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="/img/h5_img/img/svg/home-5.png" alt=""> 意见反馈</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+            </div>
+        </a>
+		 <a class="weui-cell weui-cell_access" href="javascript:;">
+            <div class="weui-cell__bd">
+                <p class="choose-text"><img src="/img/h5_img/img/svg/ge4.png" alt=""> 联系店家：18202386214</p>
+            </div>
+            <div class="weui-cell__ft choose-des">
+            </div>
+        </a>
+    </div>
+</section>
+<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script>
+function shouhuodizhi(){
+	alert("进来了");
+    var a =  document.getElementById("a").html;
+    window.location.href  = "../api/CustnmerH5/shouhuodizhi_h5";
+ }
+</script>
+</body>
+</html>

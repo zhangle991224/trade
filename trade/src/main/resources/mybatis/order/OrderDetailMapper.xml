@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dm.trade.order.dao.OrderDetailDao">
+
+    <select id="get" resultType="com.dm.trade.order.domain.OrderDetailDO">
+		select `id`,`order_id`,`customer_id`,`goods_id`,`unit`,`num`,`unit_price`,`total_price`,`activity_price`,`create_time`,`update_time`,`var01`,`var02` from dm_order_detail where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.dm.trade.order.domain.OrderDetailDO">
+        select
+        `id`,`order_id`,`customer_id`,`goods_id`,`unit`,`num`,`unit_price`,`total_price`,`activity_price`,`create_time`,`update_time`,`var01`,`var02`
+        from dm_order_detail
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="orderId != null and orderId != ''">and order_id = #{orderId}</if>
+            <if test="customerId != null and customerId != ''">and customer_id = #{customerId}</if>
+            <if test="goodsId != null and goodsId != ''">and goods_id = #{goodsId}</if>
+            <if test="unit != null and unit != ''">and unit = #{unit}</if>
+            <if test="num != null and num != ''">and num = #{num}</if>
+            <if test="unitPrice != null and unitPrice != ''">and unit_price = #{unitPrice}</if>
+            <if test="totalPrice != null and totalPrice != ''">and total_price = #{totalPrice}</if>
+            <if test="activityPrice != null and activityPrice != ''">and activity_price = #{activityPrice}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from dm_order_detail
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="orderId != null and orderId != ''">and order_id = #{orderId}</if>
+            <if test="customerId != null and customerId != ''">and customer_id = #{customerId}</if>
+            <if test="goodsId != null and goodsId != ''">and goods_id = #{goodsId}</if>
+            <if test="unit != null and unit != ''">and unit = #{unit}</if>
+            <if test="num != null and num != ''">and num = #{num}</if>
+            <if test="unitPrice != null and unitPrice != ''">and unit_price = #{unitPrice}</if>
+            <if test="totalPrice != null and totalPrice != ''">and total_price = #{totalPrice}</if>
+            <if test="activityPrice != null and activityPrice != ''">and activity_price = #{activityPrice}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.dm.trade.order.domain.OrderDetailDO" useGeneratedKeys="true" keyProperty="id">
+        insert into dm_order_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">`order_id`,</if>
+            <if test="customerId != null">`customer_id`,</if>
+            <if test="goodsId != null">`goods_id`,</if>
+            <if test="unit != null">`unit`,</if>
+            <if test="num != null">`num`,</if>
+            <if test="unitPrice != null">`unit_price`,</if>
+            <if test="totalPrice != null">`total_price`,</if>
+            <if test="activityPrice != null">`activity_price`,</if>
+            <if test="createTime != null">`create_time`,</if>
+            <if test="updateTime != null">`update_time`,</if>
+            <if test="var01 != null">`var01`,</if>
+            <if test="var02 != null">`var02`</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">#{orderId},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="goodsId != null">#{goodsId},</if>
+            <if test="unit != null">#{unit},</if>
+            <if test="num != null">#{num},</if>
+            <if test="unitPrice != null">#{unitPrice},</if>
+            <if test="totalPrice != null">#{totalPrice},</if>
+            <if test="activityPrice != null">#{activityPrice},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="var01 != null">#{var01},</if>
+            <if test="var02 != null">#{var02}</if>
+        </trim>
+    </insert>
+
+
+    <insert id="batchSave" parameterType="com.dm.trade.order.domain.OrderDetailDO" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into dm_order_detail
+        (`order_id`,`customer_id`,`goods_id`,`unit`,`num`,`unit_price`,
+        `total_price`,`activity_price`)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.orderId},#{item.customerId},#{item.goodsId},
+            #{item.unit},#{item.num},#{item.unitPrice},#{item.totalPrice},
+            #{item.activityPrice})
+        </foreach>
+    </insert>
+
+    <update id="update" parameterType="com.dm.trade.order.domain.OrderDetailDO">
+        update dm_order_detail
+        <set>
+            <if test="orderId != null">`order_id` = #{orderId},</if>
+            <if test="customerId != null">`customer_id` = #{customerId},</if>
+            <if test="goodsId != null">`goods_id` = #{goodsId},</if>
+            <if test="unit != null">`unit` = #{unit},</if>
+            <if test="num != null">`num` = #{num},</if>
+            <if test="unitPrice != null">`unit_price` = #{unitPrice},</if>
+            <if test="totalPrice != null">`total_price` = #{totalPrice},</if>
+            <if test="activityPrice != null">`activity_price` = #{activityPrice},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="var01 != null">`var01` = #{var01},</if>
+            <if test="var02 != null">`var02` = #{var02}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from dm_order_detail where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from dm_order_detail where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

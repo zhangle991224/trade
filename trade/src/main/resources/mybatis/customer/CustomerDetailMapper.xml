@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dm.trade.customer.dao.CustomerDetailDao">
+
+    <select id="get" resultType="com.dm.trade.customer.domain.CustomerDetailDO">
+		select `id`,`customer_id`,`apply_province`,`apply_city`,`apply_area`,`apply_address`,`name`,`com_name`,`linkman`,`link_phone`,`create_time`,`update_time`,`from_customer`,`var01`,`var02`,`var03` from dm_customer_detail where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.dm.trade.customer.domain.CustomerDetailDO">
+        select
+        `id`,`customer_id`,`apply_province`,`apply_city`,`apply_area`,`apply_address`,`name`,`com_name`,`linkman`,`link_phone`,`create_time`,`update_time`,`from_customer`,`var01`,`var02`,`var03`
+        from dm_customer_detail
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="customerId != null and customerId != ''">and customer_id = #{customerId}</if>
+            <if test="applyProvince != null and applyProvince != ''">and apply_province = #{applyProvince}</if>
+            <if test="applyCity != null and applyCity != ''">and apply_city = #{applyCity}</if>
+            <if test="applyArea != null and applyArea != ''">and apply_area = #{applyArea}</if>
+            <if test="applyAddress != null and applyAddress != ''">and apply_address = #{applyAddress}</if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="comName != null and comName != ''">and com_name = #{comName}</if>
+            <if test="linkman != null and linkman != ''">and linkman = #{linkman}</if>
+            <if test="linkPhone != null and linkPhone != ''">and link_phone = #{linkPhone}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="fromCustomer != null and fromCustomer != ''">and from_customer = #{fromCustomer}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from dm_customer_detail
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="customerId != null and customerId != ''">and customer_id = #{customerId}</if>
+            <if test="applyProvince != null and applyProvince != ''">and apply_province = #{applyProvince}</if>
+            <if test="applyCity != null and applyCity != ''">and apply_city = #{applyCity}</if>
+            <if test="applyArea != null and applyArea != ''">and apply_area = #{applyArea}</if>
+            <if test="applyAddress != null and applyAddress != ''">and apply_address = #{applyAddress}</if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="comName != null and comName != ''">and com_name = #{comName}</if>
+            <if test="linkman != null and linkman != ''">and linkman = #{linkman}</if>
+            <if test="linkPhone != null and linkPhone != ''">and link_phone = #{linkPhone}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="fromCustomer != null and fromCustomer != ''">and from_customer = #{fromCustomer}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.dm.trade.customer.domain.CustomerDetailDO">
+        insert into dm_customer_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">`id` ,</if>
+            <if test="customerId != null">`customer_id`,</if>
+            <if test="applyProvince != null">`apply_province`,</if>
+            <if test="applyCity != null">`apply_city`,</if>
+            <if test="applyArea != null">`apply_area`,</if>
+            <if test="applyAddress != null">`apply_address`,</if>
+            <if test="name != null">`name`,</if>
+            <if test="comName != null">`com_name`,</if>
+            <if test="linkman != null">`linkman`,</if>
+            <if test="linkPhone != null">`link_phone`,</if>
+            <if test="createTime != null">`create_time`,</if>
+            <if test="updateTime != null">`update_time`,</if>
+            <if test="fromCustomer != null">`from_customer`,</if>
+            <if test="var01 != null">`var01`,</if>
+            <if test="var02 != null">`var02`,</if>
+            <if test="var03 != null">`var03`</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="applyProvince != null">#{applyProvince},</if>
+            <if test="applyCity != null">#{applyCity},</if>
+            <if test="applyArea != null">#{applyArea},</if>
+            <if test="applyAddress != null">#{applyAddress},</if>
+            <if test="name != null">#{name},</if>
+            <if test="comName != null">#{comName},</if>
+            <if test="linkman != null">#{linkman},</if>
+            <if test="linkPhone != null">#{linkPhone},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="fromCustomer != null">#{fromCustomer},</if>
+            <if test="var01 != null">#{var01},</if>
+            <if test="var02 != null">#{var02},</if>
+            <if test="var03 != null">#{var03}</if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.dm.trade.customer.domain.CustomerDetailDO">
+        update dm_customer_detail
+        <set>
+            <if test="customerId != null">`customer_id` = #{customerId},</if>
+            <if test="applyProvince != null">`apply_province` = #{applyProvince},</if>
+            <if test="applyCity != null">`apply_city` = #{applyCity},</if>
+            <if test="applyArea != null">`apply_area` = #{applyArea},</if>
+            <if test="applyAddress != null">`apply_address` = #{applyAddress},</if>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="comName != null">`com_name` = #{comName},</if>
+            <if test="linkman != null">`linkman` = #{linkman},</if>
+            <if test="linkPhone != null">`link_phone` = #{linkPhone},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="fromCustomer != null">`from_customer` = #{fromCustomer},</if>
+            <if test="var01 != null">`var01` = #{var01},</if>
+            <if test="var02 != null">`var02` = #{var02},</if>
+            <if test="var03 != null">`var03` = #{var03}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from dm_customer_detail where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from dm_customer_detail where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

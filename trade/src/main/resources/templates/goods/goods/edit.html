@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content ">
+    <div class="layui-form row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <form class="form-horizontal m-t" id="signupForm">
+                        <input id="id" name="id" th:value="${goods.id}" type="hidden">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品名称：</label>
+                            <div class="col-sm-8">
+                                <input id="name" name="name" th:value="${goods.name}" class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="layui-form-item form-group">
+                            <!--<div class="layui-inline">-->
+                            <label class="col-sm-3 control-label">商品类别：</label>
+                            <div class="col-sm-8 layui-input-inline">
+                                <select th:field="${goods.categoryId}" th:switch="${goods.categoryId}"
+                                        name="categoryId">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option th:each="cate:${categorys}" th:value="${cate.id}"
+                                            th:text="${cate.name}" th:selected="selected"></option>
+                                </select>
+                            </div>
+                            <!--</div>-->
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">整装售价：</label>
+                            <div class="col-sm-8">
+                                <input id="containerPrice" name="containerPrice" th:value="${goods.containerPrice}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="form-group" id="img_div">
+                            <label class="col-sm-3 control-label">显示图片：</label>
+                            <div class="col-sm-4">
+                                <button type="button" class="layui-btn" id="contentImg">
+                                    <i class="layui-icon">&#xe67c;</i>上传图片
+                                </button>
+
+                            </div>
+                            <!--<div class="col-sm-4" style="margin-left: 33px;">-->
+
+                            <!--</div>-->
+                            <input type="hidden" th:value="${goods.goodsImg}" name="goodsImg" id="goodsImg">
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label"></label>
+                            <div class="form-group">
+                                <img class="col-sm-5 layui-upload-img" th:src="${goods.goodsImg}" src="" id="img">
+                                <div class="col-sm-4"></div>
+                            </div>
+                        </div>
+
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">散装价格：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="bulkPrice" name="bulkPrice" th:value="${goods.bulkPrice}"-->
+                        <!--class="form-control" type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">散装起批数量：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="bulkNum" name="bulkNum" th:value="${goods.bulkNum}" class="form-control"-->
+                        <!--type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">是否允许退货 1:允许、0:否：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="isReturn" name="isReturn" th:value="${goods.isReturn}" class="form-control"-->
+                        <!--type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">条码：</label>
+                            <div class="col-sm-8">
+                                <input id="barcode" name="barcode" th:value="${goods.barcode}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">规格：</label>
+                            <div class="col-sm-8">
+                                <input id="specifications" name="specifications" th:value="${goods.specifications}"
+                                       class="form-control" type="text">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">-->
+                        <!--<label class="col-sm-3 control-label">标签：</label>-->
+                        <!--<div class="col-sm-8">-->
+                        <!--<input id="label" name="label" th:value="${goods.label}" class="form-control"-->
+                        <!--type="text">-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">定金金额：</label>
+                            <div class="col-sm-8">
+                                <input id="var01" name="var01" th:value="${goods.var01}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品状态：</label>
+                            <div class="col-sm-8">
+                                <!--<input id="status" name="status" class="form-control" type="text">-->
+                                <input type="radio" th:checked="${goods.status==1}" name="status" value="1" title="启用">
+                                <input type="radio" th:checked="${goods.status==0}" name="status" value="0" title="停用">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">备注：</label>
+                            <div class="col-sm-8">
+                                <input id="remark" name="remark" th:value="${goods.remark}" class="form-control"
+                                       type="text">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-8 col-sm-offset-3">
+                                <button type="submit" class="btn btn-primary">提交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:include="include::footer"></div>
+<script type="text/javascript" src="/static/js/layui.js"></script>
+<script type="text/javascript" src="/static/js/appjs/goods/goods/edit.js"></script>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+
+    });
+</script>
+</body>
+</html>

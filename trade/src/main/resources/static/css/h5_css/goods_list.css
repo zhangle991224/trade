@@ -1,0 +1,58 @@
+.butom_f{  width: 100%;
+    height: 5rem;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    bottom: 9%;
+    background: #fff;
+    border-top: 0.1rem solid #e9e9e9;
+    font-size: 1.6rem;
+    align-items: center;
+    z-index: 101;}
+    <!--购物车样式 -->
+	 .butom_f .num_price .count_num{ width: 3.6rem;height: 3.6rem;margin: 0 1.4rem; background: url("/img/cart.png") no-repeat; background-size: contain;position: relative;}
+        .butom_f .count_num span{ position: absolute;top: -0.2rem;right: -0.2rem; background: #000; color: #fff; border-radius: 2rem;width: 1.2rem; height: 1.2rem; text-align: center; line-height: 1.2rem; font-size: 1.2rem; padding: 0.2rem;}
+        .butom_f .num_price{ display: flex ;justify-content: flex-end; align-items: center;}
+        .butom_f .submit{ padding: 0.6rem 1.8rem; background: #ffce5a; border-radius: 0.4rem; margin-right:4%; }
+        .butom_f .price::before{content: '合计:'}
+        .butom_f .price::after{content: '元'}
+	
+	  /*左侧列表样式*/
+        .content{ display: flex; justify-content: flex-start; flex-wrap: nowrap;}
+        .type_list{ width: 20%;margin-top:12%}
+        .type_list li{ background: #f2f2f2; font-size: 1.2rem; padding: 0.6rem 0; height: 3.9rem; line-height: 2.2rem; text-align: center; position: relative;}
+        .type_list li span{ position: absolute; left: 0; top: 1.2rem; height: 1.2rem; width: 0.4rem; background: #f2f2f2;}
+        .type_list li.select span{ background: #f85a62; }
+        .type_list li.select{ font-weight: 800; background: #fff;}
+        /*鍙充晶鍒楄〃鏍峰紡*/
+        .item_list{ width: 80%;  overflow-y: scroll; border-right: 0.1rem solid #e9e9e9; border-left: 0.1rem solid #e9e9e9;background-color: #fff;}
+        .item_list .item_type{ font-size: 1.6rem; font-weight: 800; margin: 1rem;}
+        .item_list li{ font-size: 1.6rem; font-weight: 800; display: flex;justify-content: space-between; margin: 2rem 0; align-items: flex-end; flex-wrap: nowrap; }
+        .item_list li div{ height: 6rem; overflow: hidden;}
+        .item_list .item_img{ width: 30%; display: flex; justify-content: center;}
+        .item_list .item_img img{ height: 100%; width: auto; margin: 0 auto;}
+        .item_list .item_content{ width: 40%; }
+        .item_title{ font-size: 1.1rem; font-weight: 800; }
+        .item_activity{ font-size: 0.8rem; border: 0.1rem solid #e74040; border-radius: 1.6rem; color: #e74040; padding: 0rem 0.2rem; width: 5rem; text-align: center; height: 1.4rem; line-height: 1.4rem; margin: 0.4rem 0;}
+        .item_price span{ font-size: 1.4rem; color: #e74040; font-weight: 800;}
+        .item_price span::before{content: "¥"; font-size: 1.2rem;}
+        .item_price s{ font-size: 1.2rem; color: #999999; margin-left: 0.6rem;}
+        .item_price s::before{content: "¥"; font-size: 1.2rem;}
+        .item_list li .calc{width: 20%; display: flex; justify-content: flex-end; align-items: flex-end; flex-wrap: nowrap; margin-right: 2%;}
+        .item_list li .calc p{ width: 1.6rem; height: 1.6rem; margin:0 1%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem; display: none;}
+        .item_list li .calc .item_sub{ background: #000 url("/img/h5_img/img/03.png") no-repeat; background-size: contain; display: none;}
+        .item_list li .calc .item_add{ background: #000 url("/img/h5_img/img/02.png") no-repeat; background-size: contain; display: block;}
+        .content .item_list li .select p{display: block;}
+	/*璐墿杞﹀垪琛�*/
+        .select_list_parent{ position: fixed;z-index: 100;top: 100%; width: 100%; background: #fff; transition: all 1s;}
+        .select_num{ width: 96%; margin:0 auto; padding: 0.4rem;border-bottom: 0.1rem solid #e9e9e9;}
+        .select_list{ width: 96%;margin: 0 auto;}
+        .select_list li{ display: flex; justify-content: flex-start; margin: 0.4rem 0;}
+        .select_list li .name{ width: 50%; }
+        .select_list li .price{ width: 20%; font-size: 1.4rem;}
+        .select_list li .price::before{ content: '楼' }
+
+        .select_list li .calc {width: 30%;  display: flex; justify-content: flex-end; align-items: center; flex-wrap: nowrap; margin-right: 2%;}
+        .select_list li .calc p{ width: 1.6rem; height: 1.6rem; margin:0 1%;border-radius: 1.8rem; overflow: hidden; text-align: center; line-height: 1.6rem;font-size: 1.6rem;}
+        .select_list li .calc .item_sub{ background: #000 url("img/03.png") no-repeat; background-size: contain;}
+        .select_list li .calc .item_add{ background: #000 url("img/02.png") no-repeat; background-size: contain;}

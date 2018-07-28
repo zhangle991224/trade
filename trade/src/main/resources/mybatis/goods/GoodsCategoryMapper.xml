@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dm.trade.goods.dao.GoodsCategoryDao">
+
+    <select id="get" resultType="com.dm.trade.goods.domain.GoodsCategoryDO">
+		select `id`,`name`,`pid`,`business_id`,`create_timne`,`update_time` from dm_goods_category where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.dm.trade.goods.domain.GoodsCategoryDO">
+        select `id`,`name`,`pid`,`business_id`,`create_timne`,`update_time` from dm_goods_category
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="pid != null">and pid = #{pid}</if>
+            <if test="createTimne != null and createTimne != ''">and create_timne = #{createTimne}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by `order`
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from dm_goods_category
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="name != null and name != ''">and name = #{name}</if>
+            <if test="pid != null and pid != ''">and pid = #{pid}</if>
+            <if test="createTimne != null and createTimne != ''">and create_timne = #{createTimne}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.dm.trade.goods.domain.GoodsCategoryDO">
+        insert into dm_goods_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">`id`,</if>
+            <if test="name != null">`name`,</if>
+            <if test="pid != null">`pid`,</if>
+            <if test="createTimne != null">`create_timne`,</if>
+            <if test="updateTime != null">`update_time`</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="pid != null">#{pid},</if>
+            <if test="createTimne != null">#{createTimne},</if>
+            <if test="updateTime != null">#{updateTime}</if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.dm.trade.goods.domain.GoodsCategoryDO">
+        update dm_goods_category
+        <set>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="pid != null">`pid` = #{pid},</if>
+            <if test="createTimne != null">`create_timne` = #{createTimne},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <delete id="remove">
+		delete from dm_goods_category where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from dm_goods_category where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+
+    <select id="getByIds" resultType="com.dm.trade.goods.domain.GoodsCategoryDO" parameterType="list">
+        select `id`,`name`,`pid`,`business_id`,`create_timne`,`update_time` from dm_goods_category
+        where id in
+        <foreach collection="ids" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,147 @@
+@media only screen and (max-width:310px) and (min-width:300px){html{font-size:10px !important;}}
+@media only screen and (max-width:320px) and (min-width:310px){html{font-size:10px !important;}}
+@media only screen and (max-width:360px) and (min-width:320px){html{font-size:10px !important;}}
+@media only screen and (max-width:360px) and (min-width:350px){html{font-size:10px !important;}}
+@media only screen and (max-width:480px) and (min-width:360px){html{font-size:12px !important;}}
+@media only screen and (max-width:480px) and (min-width:470px){html{font-size:12px !important;}}
+@media only screen and (max-width:560px) and (min-width:480px){html{font-size:14px !important;}}
+@media only screen and (max-width:570px) and (min-width:560px){html{font-size:14px !important;}}
+@media only screen and (max-width:640px) and (min-width:570px){html{font-size:16px !important;}}
+@media only screen and (max-width:640px) and (min-width:630px){html{font-size:16px !important;}}
+@media only screen and (min-width:640px){html{font-size:16px !important;}}
+body{background: #f6f6f6; font-family: 寰蒋闆呴粦; max-width: 640px; margin: 0 auto;}
+.zyw-container{width: 100%; max-width: 640px; margin: 0 auto; position: relative;}
+.zyw-footer .zyw-container .weui-tabbar {
+    background-color: #fff;
+    top: 0;
+    height: 56px;
+}
+.zyw-container>img{
+    width: 100%;
+}
+.mt-2{margin-top: 2rem;}
+.mt-625{margin-top: 0.625rem; margin-bottom: 0;}
+.mb-625{margin-bottom: 0.625rem; margin-top: 0;}
+a{color: inherit; text-decoration: none !important;}
+.white-color{color: #fff !important;}
+.white-bgcolor{background: #fff !important;}
+.red-color{color: #ff0000;}
+.zyw-header, .zyw-footer {
+    position: fixed;
+    width: 100%;
+    z-index: 5;
+    left: 0;
+}
+.zyw-header {
+    top: 0;
+    height: 45px;
+    line-height: 45px;
+    background: url("/img/h5_img/img/head-bg.jpg") no-repeat;
+    background-size: 100%;
+}
+.zyw-footer {
+    bottom: 0;
+    height: 56px;
+}
+.zyw-footer~.zyw-container {
+    border-bottom: 56px solid transparent;
+}
+.zyw-header~.zyw-container {
+    border-top: 45px solid transparent;
+}
+.zyw-header .head-l{
+    position: absolute;
+    top: 0;
+    font-size: 1.5rem;
+    left: 10px;
+}
+.zyw-header .head-r{
+    position: absolute;
+    top: 0;
+    font-size: 1.5rem;
+    right: 10px;
+}
+.zyw-header .head-r a{
+    font-size: 1.2rem;
+}
+.zyw-header h1{
+    text-align: center;
+    font-size: 1.5rem;
+    margin: 0;
+    line-height: 45px;
+}
+.zyw-footer p{
+    margin: 0;
+}
+.choose-text{
+    margin: 0;
+    font-size: 1.25rem;
+    color: #999;
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+.choose-text span{
+    margin-left: 2rem;
+    max-width: 50%;
+    color: #444;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+    white-space: nowrap;
+}
+.choose-des{
+    font-size: 1rem;
+}
+.weui-cells .weui-cell{border-bottom: 1px solid #f6f6f6;}
+.weui-cells .weui-cell:last-child{border-bottom: none;}
+/*棣栭〉澶撮儴*/
+.head-search{
+    position: relative;
+    width: 72%;
+    margin: 0 auto;
+    line-height: 45px;
+}
+.head-search input{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    border: none;
+    padding-left: 30px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+.head-search input::-webkit-input-placeholder {color:#fff; font-size: 0.8rem;}
+.head-search input:-moz-placeholder {color:#fff; font-size: 0.8rem;}
+.head-search input::-moz-placeholder {color:#fff; font-size: 0.8rem;}
+.head-search input:-ms-input-placeholder {color:#fff; font-size: 0.8rem;}
+.head-search .fa-search{
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    left: 8px;
+}
+
+/*tab灞傛牱寮�*/
+.weui-navbar {
+    background-color: #fff;
+}
+.weui-navbar__item {
+    padding: 9px 0;
+    font-size: 14px;
+    color: #444;
+}
+.weui-navbar__item:after {
+    border-right: none;
+}
+/*.weui-navbar__item.weui-bar__item--on:after{*/
+    /*display: block;*/
+    /*content: '';*/
+    /*width: 100%;*/
+    /*height: 2px;*/
+    /*bottom: 0;*/
+    /*left: 0;*/
+    /*margin-left: -31px;*/
+    /*top: auto;*/
+    /*border-radius: 2px;*/
+    /*background-color: #f23030;*/
+/*}*/

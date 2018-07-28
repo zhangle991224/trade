@@ -1,0 +1,120 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>我的订单</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<script type="text/javascript" src="/js/jquery-1.8.1.js"></script>
+<script type="text/javascript" src="/js/fontsize.js"></script>
+</head>
+<style>
+.tanch{width: 80%;overflow: hidden;margin-left: 10%;background-color: #fff;border-radius: 8px;padding: .2rem; position: fixed;top: 3rem;box-shadow: 0px 5px 20px #999;    margin-top: 60px;z-index: 9999;}
+.tanch p {font-size: .3rem;color: #333;margin-top: 10px;}
+.tanch a {display: block;width: 40%;height:2rem;text-align: center;background-color: #ff0000;border-radius: 6px;color: #fff; margin-top: .1rem;}
+
+
+</style>
+<body>
+<div class="nav">
+	<a class="weizhi" href="javascript:window.history.back(-1)"> <img src="/img/images/zuo.png" alt=""></a>
+	<div class="zhongzi">
+		我的订单
+	</div>
+    <!--<a class="shoucang" href="duihuanliebiao.html">我要兑换</a>-->
+</div>
+<div class="b_order_box">
+	<ul class="b_myorder2 show" id="b_myorder2">
+		
+		
+	</ul>
+</div>
+
+<div class="tanch" style="display:none;" onclick="hidden_Detail()" id="tanch">
+		<!-- <p style="">&nbsp;&nbsp;&nbsp;请完善您的收货信息再购物哦！</p>
+		<div style="margin-left:30%;margin-top: 20px;">
+		   <a href="#" class="gb-tan"style=""><span>去完善</span></a>
+		</div> -->
+</div>
+
+</body>
+<script type="text/javascript">
+	
+ $(document).ready(function () {
+	 var html='';
+	        $.ajax({
+	            type: "POST",
+	            url: "/api//CustnmerH5/wodedingdan_h5_list",
+	            data: $('#signupForm').serialize(),//用户id
+	            success: function (data) {
+	               for(var i=0;i< data.data.rows.length ;i++){
+	            	  var st= data.data.rows[i].status;
+	            	  if(st==0){
+	            		var statu_r = "未发货"
+	            	  }else if(st==1){
+	            		  var statu_r = "等待派送";
+	            	  }else if(st==2){
+	            		  var statu_r="派送中";
+	            	  }else{
+	            		  var statu_r="已收货";
+	            	  } 
+				      html+='      <li>'
+				           +'	<a href="#">'
+				           +'		<div class="b_order_detail clearfix" onclick="Detail('+data.data.rows[i].id+')">'
+				           +'			<div class="b_good_img">'
+				          /*  +'				<img src="/img/images/b_ordertupian_03.jpg"/>' */
+				           +'           <p>订单时间：</p>'
+				           +'			</div>'
+				           +'			<div class="b_good_name">'
+				           +'  			<p>'+data.data.rows[i].createTime+'</p>'
+				           +'			<span>合计：¥'+data.data.rows[i].totalmoney+'</span>'
+				           +'			</div>'
+				         /*  +'			<div class="b_good_price">'
+				           +'				<p id="Detail_id">'+data.data.rows[i].id+'</p>'
+				           +'			</div>' */
+				           +'		</div>'
+				       
+				           +'	</a>'
+				           +'	<div class="b_order_after clearfix">'
+				           +'		<a class="b_buy_again" href="#">确认收货</a>'
+				           +'		<a class="b_refund" id="statu_r">'+statu_r+'</a>'/* 货物状态--订单状态 0: 下单未支付,1:等待派送,2:派送中,3:已收货 '+data.data.rows[i].status+' */
+				           +'	</div>'
+				           +'</li>';
+	               }
+	               $("#b_myorder2").html(html);
+	            }
+	        });
+	    
+ });
+ 
+    function Detail(orderId){
+    	 var html='';
+    	 $(".tanch").css("display","block");
+    	 $.ajax({
+	            type: "POST",
+	            url: "/api//CustnmerH5/wodedingdan_h5_Detail",
+	            traditional:true,
+	            data:{"orderId":orderId},//用户id
+	            success: function (data) {
+	              for(var i=0;i< data.data.length ;i++){
+	            	  html+='<div>'
+	            		  +'<img style="width: 20%;float: left;" src="'+data.data[i].goodsImg+'"/>'/* 	 <p style="width: 30%;float: left;">&nbsp;&nbsp;&nbsp;图片</p> */
+	            		  +'   <p style="width: 60%;float: left;">'+data.data[i].name+'</p>'
+	            	      +'   <p style="width: 20%;float: left;">数量:'+data.data[i].num+'</p>'
+	            	      +'</div>';
+	               }
+	               $("#tanch").html(html);
+	            }
+	        });
+    }
+    function hidden_Detail( ){
+    	 $(".tanch").css("display","none");
+    	
+    	
+    }
+	</script>
+</html>

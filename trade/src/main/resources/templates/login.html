@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title></title>
+    <meta name="keywords" content="百惠商户通后台管理系统">
+    <meta name="description" content="百惠商户通后台管理系统">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/font-awesome.css?v=4.4.0" rel="stylesheet">
+    <link href="/css/animate.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/login.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html"/>
+    <![endif]-->
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+    </script>
+
+</head>
+
+<body class="signin">
+<div class="signinpanel">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="signin-info">
+                <div class="logopanel m-b">
+                    <h1>TRADE</h1>
+                </div>
+                <div class="m-b"></div>
+                <h3>
+                    欢迎使用 <strong>百惠商户通后台管理系统</strong>
+                </h3>
+
+
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <form id="signupForm">
+                <h3 class="text-center">用户登录</h3>
+                <p class="m-t-md text-center">欢迎百惠商户通登录后台管理系统</p>
+                <input type="text" name="username" class="form-control uname"/>
+                <input type="password" name="password"
+                       class="form-control pword m-b"/>
+                <button class="btn btn-login btn-block">登录</button>
+            </form>
+        </div>
+    </div>
+    <div class="signup-footer">
+        <div class="pull-left">&copy; 2018 All Rights Reserved. 百惠商户通
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="/js/jquery.min.js?v=2.1.4"></script>
+<script src="/js/bootstrap.min.js?v=3.3.6"></script>
+
+<!-- 自定义js -->
+<script src="/js/content.js?v=1.0.0"></script>
+
+<!-- jQuery Validation plugin javascript-->
+<script src="/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/js/plugins/validate/messages_zh.min.js"></script>
+<script src="/js/plugins/layer/layer.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        validateRule();
+        //$("#signupForm").validate();
+    });
+    $.validator.setDefaults({
+        submitHandler: function () {
+            login();
+        }
+    });
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    function login() {
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: $('#signupForm').serialize(),
+            success: function (r) {
+                if (r.code == 0) {
+                    if (isAndroid || isiOS) {
+                        window.location.href = '/index';
+                    } else {
+                        parent.location.href = '/index';
+                    }
+                } else {
+                    layer.msg(r.msg);
+                }
+            }
+        });
+    }
+
+    function validateRule() {
+        var icon = "<i class='fa fa-times-circle'></i> ";
+        $("#signupForm").validate({
+            rules: {
+                username: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                username: {
+                    required: icon + "请输入您的用户名",
+                },
+                password: {
+                    required: icon + "请输入您的密码",
+                }
+            }
+        })
+    }
+</script>
+</body>
+
+
+</html>

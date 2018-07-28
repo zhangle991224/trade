@@ -1,0 +1,16 @@
+trade:
+  uploadPath: /var/dm-trade/uploaded_files/
+  othersPath: /var/dm-trade/others/
+logging:
+  level:
+    root: INFO
+  file: /var/dm-trade/log/dm-trade.log
+pay:
+  trade:
+    notifyUrl: https://trade.sjpjd.com/api/order/wxdtnotify
+  needpay: 0
+server:
+  ssl:
+    key-store: classpath:ssl/trade.sjpjd.com.jks
+    key-store-password: 123456
+    key-store-type: JKS

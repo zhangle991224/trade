@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dm.trade.goods.dao.GoodsDao">
+
+    <select id="get" resultType="com.dm.trade.goods.domain.GoodsDO">
+		select `id`,`name`,`category_id`,`container_price`,`goods_img`,`bulk_price`,`bulk_num`,`is_return`,`barcode`,`specifications`,`status`,`label`,`remark`,`create_time`,`update_time`,`var01`,`var02`,`var03` from dm_goods where id = #{value}
+	</select>
+
+    <select id="getList" resultType="com.dm.trade.goods.domain.GoodsDO">
+        select
+        `id`,`name`,`category_id`,`container_price`,`goods_img`,`bulk_price`,`bulk_num`,`is_return`,`barcode`,`specifications`,`status`,`label`,`remark`,`create_time`,`update_time`,`var01`,`var02`,`var03`
+        from dm_goods where id in
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="list" resultType="com.dm.trade.goods.domain.GoodsDO">
+        select
+        `id`,`name`,`category_id`,`container_price`,`goods_img`,`bulk_price`,`bulk_num`,`is_return`,`barcode`,`specifications`,`status`,`label`,`remark`,`create_time`,`update_time`,`var01`,`var02`,`var03`
+        from dm_goods
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="name != null and name != ''">and `name` LIKE CONCAT('%',#{name},'%')</if>
+            <if test="categoryId != null and categoryId != ''">and category_id = #{categoryId}</if>
+            <if test="containerPrice != null and containerPrice != ''">and container_price = #{containerPrice}</if>
+            <if test="goodsImg != null and goodsImg != ''">and goods_img = #{goodsImg}</if>
+            <if test="bulkPrice != null and bulkPrice != ''">and bulk_price = #{bulkPrice}</if>
+            <if test="bulkNum != null and bulkNum != ''">and bulk_num = #{bulkNum}</if>
+            <if test="isReturn != null and isReturn != ''">and is_return = #{isReturn}</if>
+            <if test="barcode != null and barcode != ''">and barcode = #{barcode}</if>
+            <if test="specifications != null and specifications != ''">and specifications = #{specifications}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="label != null and label != ''">and label = #{label}</if>
+            <if test="remark != null and remark != ''">and remark = #{remark}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+            <if test="categoryIds != null and categoryIds.size() >0 ">
+                and category_id in
+                <foreach collection="categoryIds" open="(" separator="," close=")">
+                    #{value}
+                </foreach>
+            </if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from dm_goods
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="name != null and name != ''">and `name` LIKE CONCAT('%',#{name},'%')</if>
+            <if test="categoryId != null and categoryId != ''">and category_id = #{categoryId}</if>
+            <if test="containerPrice != null and containerPrice != ''">and container_price = #{containerPrice}</if>
+            <if test="goodsImg != null and goodsImg != ''">and goods_img = #{goodsImg}</if>
+            <if test="bulkPrice != null and bulkPrice != ''">and bulk_price = #{bulkPrice}</if>
+            <if test="bulkNum != null and bulkNum != ''">and bulk_num = #{bulkNum}</if>
+            <if test="isReturn != null and isReturn != ''">and is_return = #{isReturn}</if>
+            <if test="barcode != null and barcode != ''">and barcode = #{barcode}</if>
+            <if test="specifications != null and specifications != ''">and specifications = #{specifications}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="label != null and label != ''">and label = #{label}</if>
+            <if test="remark != null and remark != ''">and remark = #{remark}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.dm.trade.goods.domain.GoodsDO">
+        insert into dm_goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">`id`,</if>
+            <if test="name != null">`name`,</if>
+            <if test="categoryId != null">`category_id`,</if>
+            <if test="containerPrice != null">`container_price`,</if>
+            <if test="goodsImg != null">`goods_img`,</if>
+            <if test="bulkPrice != null">`bulk_price`,</if>
+            <if test="bulkNum != null">`bulk_num`,</if>
+            <if test="isReturn != null">`is_return`,</if>
+            <if test="barcode != null">`barcode`,</if>
+            <if test="specifications != null">`specifications`,</if>
+            <if test="status != null">`status`,</if>
+            <if test="label != null">`label`,</if>
+            <if test="remark != null">`remark`,</if>
+            <if test="createTime != null">`create_time`,</if>
+            <if test="updateTime != null">`update_time`,</if>
+            <if test="var01 != null">`var01`,</if>
+            <if test="var02 != null">`var02`,</if>
+            <if test="var03 != null">`var03`</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="name != null">#{name},</if>
+            <if test="categoryId != null">#{categoryId},</if>
+            <if test="containerPrice != null">#{containerPrice},</if>
+            <if test="goodsImg != null">#{goodsImg},</if>
+            <if test="bulkPrice != null">#{bulkPrice},</if>
+            <if test="bulkNum != null">#{bulkNum},</if>
+            <if test="isReturn != null">#{isReturn},</if>
+            <if test="barcode != null">#{barcode},</if>
+            <if test="specifications != null">#{specifications},</if>
+            <if test="status != null">#{status},</if>
+            <if test="label != null">#{label},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="var01 != null">#{var01},</if>
+            <if test="var02 != null">#{var02},</if>
+            <if test="var03 != null">#{var03}</if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.dm.trade.goods.domain.GoodsDO">
+        update dm_goods
+        <set>
+            <if test="name != null">`name` = #{name},</if>
+            <if test="categoryId != null">`category_id` = #{categoryId},</if>
+            <if test="containerPrice != null">`container_price` = #{containerPrice},</if>
+            <if test="goodsImg != null">`goods_img` = #{goodsImg},</if>
+            <if test="bulkPrice != null">`bulk_price` = #{bulkPrice},</if>
+            <if test="bulkNum != null">`bulk_num` = #{bulkNum},</if>
+            <if test="isReturn != null">`is_return` = #{isReturn},</if>
+            <if test="barcode != null">`barcode` = #{barcode},</if>
+            <if test="specifications != null">`specifications` = #{specifications},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="label != null">`label` = #{label},</if>
+            <if test="remark != null">`remark` = #{remark},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="var01 != null">`var01` = #{var01},</if>
+            <if test="var02 != null">`var02` = #{var02},</if>
+            <if test="var03 != null">`var03` = #{var03}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from dm_goods where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from dm_goods where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

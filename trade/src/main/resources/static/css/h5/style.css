@@ -1,0 +1,67 @@
+
+/*Ʒ�Ʒ���*/
+.ot-menu{ background: #eeeeee ;}
+.ot-menu ul li{ text-align: center; border-bottom: 1px solid #c8c8c8; margin: 0 15px;}
+.ot-menu ul li a{font-size: 1.3rem;line-height: 52px;  }
+.ot-menu ul li.active { color: #f12e24; background: #ffffff;border-bottom: none; margin: 0;}
+.ot-maininfo{  float: left; background: #ffffff; overflow-y:auto}
+.menutype{  padding: 10px 1px;}
+.menutype a{ padding: 10px 10px;}
+/*.menutype a img{ max-width: 100%}*/
+/* shop */
+.Menu_box{  clear:both;  width:100%;  }
+#left_Menu {  position: absolute;  z-index: 1;  top: 60px;  bottom: 0px;  left: 0;  width: 30%;  overflow: hidden;  background: #F6F6F6;  }
+#right_Menu {  position: absolute;  z-index: 1;  top: 60px;  bottom: 0px;  left: 30%;  width: 70%;  background: #ffffff;  overflow: hidden;  }
+#right_Menu  #scroller2,#left_Menu  #scroller {
+    position: absolute;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    -o-text-size-adjust: none;
+    text-size-adjust: none;
+}
+.item{
+    overflow:hidden;
+    display: flex;
+    zoom:1;
+    padding-top: 10px;
+}
+.item-img{
+    flex: 0 0 30%;
+}
+.item-img a{ width: 100%}
+.item-img img{
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.item-desc{
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 15px
+}
+.item-ratings{
+    flex: 0 0 30%;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.gw_num{border: 1px solid #dbdbdb;width: 100%;overflow: hidden;}
+.gw_num em{display: block;height: 26px;width: 30%;float: left;color: #7A7979;border-right: 1px solid #dbdbdb;text-align: center;cursor: pointer;}
+.gw_num .num{display: block;float: left;text-align: center;width:20%;font-style: normal;font-size: 14px;line-height: 24px;border: 0;}
+.gw_num em.add{float: right;border-right: 0;border-left: 1px solid #dbdbdb;}

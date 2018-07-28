@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dm.trade.customer.dao.CustomerDao">
+
+    <select id="get" resultType="com.dm.trade.customer.domain.CustomerDO">
+		select `id`,`phone`,`password`,`leave`,`real_name`,`nick_name`,`type`,`status`,`create_time`,`update_time`,`open_id`,`var01`,`var02`,`var03` from dm_customer where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.dm.trade.customer.domain.CustomerDO">
+        select
+        `id`,`phone`,`password`,`leave`,`real_name`,`nick_name`,`type`,`status`,`create_time`,`update_time`,`open_id`,`var01`,`var02`,`var03`
+        from dm_customer
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="leave != null and leave != ''">and leave = #{leave}</if>
+            <if test="realName != null and realName != ''">and real_name = #{realName}</if>
+            <if test="nickName != null and nickName != ''">and nick_name = #{nickName}</if>
+            <if test="type != null and type != ''">and type = #{type}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="openId != null and openId != ''">and open_id = #{openId}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from dm_customer
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="phone != null and phone != ''">and phone = #{phone}</if>
+            <if test="password != null and password != ''">and password = #{password}</if>
+            <if test="leave != null and leave != ''">and leave = #{leave}</if>
+            <if test="realName != null and realName != ''">and real_name = #{realName}</if>
+            <if test="nickName != null and nickName != ''">and nick_name = #{nickName}</if>
+            <if test="type != null and type != ''">and type = #{type}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="openId != null and openId != ''">and open_id = #{openId}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.dm.trade.customer.domain.CustomerDO" useGeneratedKeys="true" keyProperty="id">
+        insert into dm_customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="phone">
+                `phone`,
+            </if>
+            <if test="password">
+                `password`,
+            </if>
+            <if test="leave">
+                `leave`,
+            </if>
+            <if test="realName">
+                `real_name`,
+            </if>
+            <if test="nickName">
+                `nick_name`,
+            </if>
+            <if test="type">
+                `type`,
+            </if>
+            <if test="status">
+                `status`,
+            </if>
+            <if test="createTime">
+                `create_time`,
+            </if>
+            <if test="updateTime">
+                `update_time`,
+            </if>
+            <if test="openId">
+                `open_id`,
+            </if>
+            <if test="var01">
+                `var01`,
+            </if>
+            <if test="var02">
+                `var02`,
+            </if>
+            <if test="var03">
+                `var03`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id},
+            </if>
+            <if test="phone">
+                #{phone},
+            </if>
+            <if test="password">
+                #{password},
+            </if>
+            <if test="leave">
+                #{leave},
+            </if>
+            <if test="realName">
+                #{realName},
+            </if>
+            <if test="nickName">
+                #{nickName},
+            </if>
+            <if test="type">
+                #{type},
+            </if>
+            <if test="status">
+                #{status},
+            </if>
+            <if test="createTime">
+                #{createTime},
+            </if>
+            <if test="updateTime">
+                #{updateTime},
+            </if>
+            <if test="openId">
+                #{openId},
+            </if>
+            <if test="var01">
+                #{var01},
+            </if>
+            <if test="var02">
+                #{var02},
+            </if>
+            <if test="var03">
+                #{var03},
+            </if>
+        </trim>
+
+    </insert>
+
+    <update id="update" parameterType="com.dm.trade.customer.domain.CustomerDO">
+        update dm_customer
+        <set>
+            <if test="phone != null">`phone` = #{phone},</if>
+            <if test="password != null">`password` = #{password},</if>
+            <if test="leave != null">`leave` = #{leave},</if>
+            <if test="realName != null">`real_name` = #{realName},</if>
+            <if test="nickName != null">`nick_name` = #{nickName},</if>
+            <if test="type != null">`type` = #{type},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="openId != null">`open_id` = #{openId},</if>
+            <if test="var01 != null">`var01` = #{var01},</if>
+            <if test="var02 != null">`var02` = #{var02},</if>
+            <if test="var03 != null">`var03` = #{var03}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from dm_customer where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from dm_customer where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

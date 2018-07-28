@@ -1,0 +1,130 @@
+.layui-container {
+    position: relative;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.layui-row:before, .layui-row:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.title {
+    margin: 20px 0 12px 0;
+}
+
+.title h2 {
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.post-content {
+    color: #3e3e3e;
+    font-size: 16px;
+    word-wrap: break-word;
+    line-height: 30px;
+}
+
+.f_tottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.f_close_img {
+    position: absolute;
+    overflow: auto;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-right: 5px;
+}
+
+.musicBox {
+    position: relative;
+    text-align: center;
+    margin-top: -27px;
+}
+
+.musicBox button {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    background-color: #3eb3ff;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMwAAABmCAYAAACHpX56AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NTc3MiwgMjAxNC8wMS8xMy0xOTo0NDowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTQgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MkFDNTE5OTgxMzdFMTFFNkFGMUQ4NkY0N0I4QURENTciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MkFDNTE5OTkxMzdFMTFFNkFGMUQ4NkY0N0I4QURENTciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDoyQUM1MTk5NjEzN0UxMUU2QUYxRDg2RjQ3QjhBREQ1NyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDoyQUM1MTk5NzEzN0UxMUU2QUYxRDg2RjQ3QjhBREQ1NyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ppl1AVsAAAQpSURBVHja7N1ZiE1xAMfx/9iGEClLEYosDxqTspWlkLVGKVtKKEtKFG9SHryIiOTBi0KUrRCRrIWRPSKlPJDGEjHkWhq/f/+jSZl7/2fm3jn/c+b7qV9T3Pl35nR+9yz3nP8tq6urMwD8tGIVABQGoDAAhQEoDEBhAArDKgAoDEBhAAoDUBiAwgAUhlUAUBiAwgAUBqAwAIUBKAyrAPDXhlWAmPorlcpgJafcVW4ovygM8K/Vys7/bDdvla3KLuVnlldAGbPGIMab60elU57XVCtVSg3nMGjpOhYoizVKuar0ozCAH3tucy36SWEAD32jPU0FhSmtdsoa5abyJcrN6N/apWB81OupXFZGc9JfGr2VM8rwBv7/gTJLeR3o+FnXRfnUiN+rjS4EXKIwxd2zVOfZmP96GJ1Y5gIbn8Lk912Zq5zmkKw4VnhszCY6Jl4e4PjIr71yXFlAYYpjYYle21zjo7C2yoG0vyGFckiWi3HSnYvesUIan0Myf3aD26BsZw/TtHMYX+UBjo8Yb9LKNmUzhQH8bVJ2RAWiMICHtco+pTWFAfwsUw6ZlHxwTGEQgnnKCaUDhQH8zFTOKp0pDOBnonJR6UZhAD8jlStKLwoD+BmmXDdu/gAKA3gYGJVmCIUB/PQx7kG0SgoD+Olh3LM0YykM4KerckGZTGEAP3bWmlPGXXqmMIAHeyfAEZPg5zQUBmljJ9dYR2EAfwsoDOBvgHFXzygM4Kk7hQH8vacwgJ93xn3FBoUBPBw2bvaZZhfKNEtxF6IssPFbgmJNs9RUdj7soSahKX3ZwyBNfhs3B0Bi819TGKSpLEuUo0kuBN9xiTT4ocxXTia9IBQGofuqzDbuWX9DYYCG2YsMdjaZG6EsEIVBqOznLNOU+yEtFIVBiF4pU5RnoS0YhUFoXhj3ZOXLEBeOy8oIyRNlXKhloTAIyR1lgvIm5IWkMAjBNWWS8iH0BaUwSNo5ZbryOQ0LS2GQpGPGfSj5LS0LTGGQlP3G3e7yI00LTWGQhN3KUuNuqDQUJr447zK1AY4Pf1uUNSahB8CyUph7MV77OMDxUZgtyHplY5r/iFAKc7hEr22u8ZGfPfRaqWxP+x8SyiPK5Uq1UlHgdY+M+4aqXGDjtwSNfUT5p7I4K29Eoexh7AZqb+N+kOc1D5UZjdyYSz0+/u+7MidLe+1Q9jB/2e9qX6UsMm6iA+upclDZa5p+CbLU47OHqWcvnlQZ990uhsKAwjTsY7S3vpW1lcDt/Si2GmVqdIibOXxwiTiHWIVuYbHPsozPalkoDOKwl4YbuixsL5TsUUYoz7O8EjiHQVxjlNHKIOMuktxWzpuEJgenMACHZACFASgMAAoDUBiAwgAUBqAwAIUBQGEACgNQGIDCABQGoDAAKAxAYQAKA1AYgMIALc4fAQYAdebPiaQu0S4AAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    background-size: 100px 50px;
+    -webkit-transition-duration: 0s;
+    transition-duration: 0s;
+}
+
+.musicBox button.play {
+    background-position: -50px 0px;
+}
+
+.musicBox button.pause {
+    background-position: 0px 0px;
+}
+
+.musicBox span {
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    margin-left: 30px;
+    color: #666666;
+    font-size: 11px;
+}
+
+.musicSelect {
+    padding-bottom: 10px;
+    font-size: 14px;
+    color: #333333;
+    margin-top: -10px;
+}
+
+.musicSelect td {
+    width: 50%;
+    text-align: center;
+}
+
+.langueSlect {
+    z-index: 99999;
+    position: absolute;
+    width: 150px;
+    margin-left: 10%;
+    padding-top: 10px;
+    background-color: white;
+    border: 1px solid #efeff4;
+    display: none;
+}
+
+button {
+    cursor: pointer;
+    -webkit-appearance: button
+}
+
+.musicSelect label img {
+    margin-bottom: -4px;
+}
+
+.musicSelect img {
+    width: 18px;
+    height: 18px;
+}
+
+img {
+    border: 0;
+}
+body{
+    background: #F8F8F8;
+    max-width: 740px;
+    padding: 0;margin: 0 auto;
+}

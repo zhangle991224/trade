@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html class="ios" style="font-size: 50px;">
+  
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/static/css/dish/dishorder/index_20180315_191215.css" rel="stylesheet" type="text/css">
+    <meta content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width,viewport-fit=cover" name="viewport">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="wap-font-scale" content="no">
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <base href="." target="_self">
+    <title>百惠超市</title>
+  </head>
+  
+  <body class="ios">
+    <div id="container"></div>
+    <div daojia="">
+      <section class="current">
+        <div class="cashierContainer ">
+          <div class="payHeadContainer">
+            <div class="payTime">
+              	<i></i>
+              	<em>账单</em>
+          	</div>
+            <div class="payStation">
+              <i>百惠超市</i>
+              <em id="pays"></em></div>
+          </div>
+          <div class="payTypeContainer">
+            <p class="acw">请选择支付方式</p>
+            <div class="ad3">
+              <ul class="acx">
+                
+                <li class="wx" index="1" paytype="wx" freetag="-1">
+                  <div class="payNameContainer">
+                    <p class="payName">微信支付</p></div>
+                  <i class="ad4" data-type="2"></i>
+                </li>
+                <li class="zfb" index="1" paytype="zfb" freetag="-1">
+                  <div class="payNameContainer">
+                    <p class="payName">支付宝</p></div>
+                  <i data-type="1">
+                  </i>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="paySubmitContainer">
+            <div class="paySubmit">
+              <a class="btnSubmit">确认支付
+                <i>￥</i>
+                <em id="priceshow"></em></a>
+            </div>
+            <div class="payConfirm none">
+              <a class="btnFinish">已完成支付</a>
+              <a class="btnRefresh">重新支付</a></div>
+          </div>
+          <div class="ad6">
+            <span class="tips"></span>
+            <a href="javascript:;" class="ad7">我知道了</a></div>
+          <div class="ad8">
+            <p class="ad9"></p>
+          </div>
+        </div>
+      </section>
+
+      <div id="no-login" style="display: none">
+        <div class="c qd ">
+          <div class="alert">
+            <h2>支付成功</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="a0b" style="display:none;" node-type="bottomMenuBigBg"></div>
+    <a class="a0a" clicktotop="" href="javascript:void 0;" style="bottom: 23px; display: none;"></a>
+  </body>
+  <script type="text/javascript" charset="utf-8">
+      $(function(){
+          var totalMoney = 0.00;
+          var options = JSON.parse(sessionStorage.getItem('option'));
+         // var option = JSON.parse(sessionStorage.getItem('tagcode'));
+          if(options.length>0){
+              for(var i=0;i<options.length;i++){
+                  var item = options[i];
+                  if(item.tag == 'checked'){
+                      totalMoney += parseFloat(item.price) * item.num;
+                  }
+              }
+              $('#pays').text('¥' +totalMoney.toFixed(2));
+              $('#priceshow').text(totalMoney.toFixed(2));
+          }
+
+          var type = "";
+
+          $('ul li').click(function(){
+              $('ul li i').each(function(){
+                   $(this).removeClass('ad4');
+              });
+              $(this).find('i').addClass('ad4');
+              type = $('ul.acx i.ad4').attr('data-type');
+              $("div.paySubmit .btnSubmit").attr("onclick","javascript:button.appPay('"+JSON.stringify(items)+"','"+total+"','"+type+"')");
+
+          });
+          if(type==''){
+              type = $('ul.acx i.ad4').attr('data-type');
+          }
+
+          var total = 0.00;
+          var items = [];
+          for(var i=0;i<options.length;i++){
+              if(options[i].tag == 'checked'){
+                  total += parseFloat(options[i].price) * options[i].num;
+                  var item = {};
+                  item.dataid = options[i].id;
+                  item.dishnum =  options[i].num + "";
+                  items.push(item);
+              }
+          }
+          $("div.paySubmit .btnSubmit").attr("onclick","javascript:button.appPay('"+JSON.stringify(items)+"','"+total+"','"+type+"')");
+      });
+  </script>
+</html>

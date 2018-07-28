@@ -1,0 +1,93 @@
+.title {
+    margin: 20px 0 12px 0;
+}
+.title h2 {
+    font-size: 19px;
+    font-weight: 400;
+}
+.date, .index-link, .views {
+    display: inline-block;
+}
+.date, .views {
+    color: #8c8c8c;
+    font-size: 16px;
+    margin-right: 8px;
+}
+#page_view {
+    font-style: italic;
+}
+.index-link {
+    font-size: 16px;
+    margin-right: 8px;
+}
+.index-link a {
+    color: #607fa6;
+}
+.post-image {
+    margin: 30px 0 0 0;
+}
+.image-loading {
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-size: 16px;
+    color: #8c8c8c;
+    border: 1px dashed #8c8c8c;
+}
+.author {
+    margin: 10px 0 30px 0px;
+    font-size: 16px;
+    color: #666;
+}
+.post-content {
+    color: #3e3e3e;
+    font-size: 16px;
+    word-wrap: break-word;
+    line-height: 30px;
+}
+.related-pt {
+    font-size: 14px;
+    color: #666;
+    margin: 20px 0 0 0;
+}
+.share {
+    margin-top: 30px;
+    font-size: 16px;
+    color: #607fa6;
+}
+#more-read-container {
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+#more-read-container legend {
+    font-size: 18px;
+    color: #8c8c8c;
+    font-weight: 400;
+}
+.more-read {
+    font-size: 14px;
+    line-height: 28px;
+}
+.more-read a {
+    color: #666;
+}
+.more-read ol {
+    margin: 10px 0 10px 18px;
+    color: #666;
+}
+.more-read ol li {
+    list-style-type: decimal;
+}
+.qrcode {
+    line-height: 24px;
+    color: #8c8c8c;
+    text-align: center;
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 0px;
+    border: 1px solid #d9dadc;
+    background-color: #fff;
+    width: 140px;
+    padding: 16px;
+}

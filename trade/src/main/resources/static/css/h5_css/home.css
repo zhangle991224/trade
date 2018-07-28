@@ -1,0 +1,74 @@
+.home-head{}
+.home-head .head-img{
+	position: relative;
+	background: url(/img/h5_img/img/home-bg.jpg) no-repeat center center;
+	background-size: 100%;
+	width: 100%;
+	height: 200px;
+}
+.home-head .head-img .head-logo{
+	overflow: hidden;
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    background: #fff;
+    position: absolute;
+    left: 2rem;
+    bottom: 0;
+    margin-bottom: -35px;
+}
+.home-head .head-img .head-logo img{
+	width: 100%;
+}
+.home-head .head-img .head-name{
+	position: absolute;
+	bottom: 0;
+	left: 110px;
+	line-height: 2.5rem;
+	color: #fff;
+	font-weight: bold;
+}
+.home-head .head-img .head-icon{
+	position: absolute;
+	top: 0.625rem;
+	right: 0.625rem;
+}
+.home-head .head-img .head-icon a{
+	margin-left: 0.4rem;
+	font-size: 1.5rem;
+	color: #fff;
+}
+.home-head .head-cont{
+    width: 70%;
+    float: right;
+    text-align: center;
+    padding: 8px 0;
+}
+.home-head .weui-flex__item{border-right: 1px solid #eee;}
+.home-head .weui-flex__item:last-child{border-right: none;}
+.home-head .head-cont p{
+	margin: 0;
+	font-weight: bold;
+	line-height: 1rem;
+	font-size: 1.2rem;
+}
+.home-head .head-cont span{
+	font-size: 1rem;
+}
+.home-cont{}
+.home-cont .choose-text{
+	color: #444;
+}
+.home-order{
+	padding: 1rem 0;
+	border-top: 1px solid #f2f2f2;
+}
+.home-order .weui-flex__item{
+	text-align: center;
+}
+.home-order .weui-flex__icon{}
+.home-order .weui-flex__label{
+	margin: 0;
+	color: #777;
+	font-size: 1rem;
+}

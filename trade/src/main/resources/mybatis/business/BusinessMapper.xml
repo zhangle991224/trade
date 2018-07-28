@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dm.trade.business.dao.BusinessDao">
+
+    <select id="get" resultType="com.dm.trade.business.domain.BusinessDO">
+		select `id`,`contact_people_name`,`contact_people_phone`,`business_name`,`business_phone`,`business_address`,`business_memo`,`create_time`,`update_time` from dm_business where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.dm.trade.business.domain.BusinessDO">
+        select `id`,`contact_people_name`,`contact_people_phone`,`business_name`,`business_phone`,`business_address`,`business_memo`,`create_time`,`update_time`        from dm_business
+        <where>
+                            <if test="id != null and id != ''">and id =
+                    #{id}
+                </if>
+                            <if test="contactPeopleName != null and contactPeopleName != ''">and contact_people_name =
+                    #{contactPeopleName}
+                </if>
+                            <if test="contactPeoplePhone != null and contactPeoplePhone != ''">and contact_people_phone =
+                    #{contactPeoplePhone}
+                </if>
+                            <if test="businessName != null and businessName != ''">and business_name =
+                    #{businessName}
+                </if>
+                            <if test="businessPhone != null and businessPhone != ''">and business_phone =
+                    #{businessPhone}
+                </if>
+                            <if test="businessAddress != null and businessAddress != ''">and business_address =
+                    #{businessAddress}
+                </if>
+                            <if test="businessMemo != null and businessMemo != ''">and business_memo =
+                    #{businessMemo}
+                </if>
+                            <if test="createTime != null and createTime != ''">and create_time =
+                    #{createTime}
+                </if>
+                            <if test="updateTime != null and updateTime != ''">and update_time =
+                    #{updateTime}
+                </if>
+                    </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from dm_business
+        <where>
+                            <if test="id != null and id != ''">and id =
+                    #{id}
+                </if>
+                            <if test="contactPeopleName != null and contactPeopleName != ''">and contact_people_name =
+                    #{contactPeopleName}
+                </if>
+                            <if test="contactPeoplePhone != null and contactPeoplePhone != ''">and contact_people_phone =
+                    #{contactPeoplePhone}
+                </if>
+                            <if test="businessName != null and businessName != ''">and business_name =
+                    #{businessName}
+                </if>
+                            <if test="businessPhone != null and businessPhone != ''">and business_phone =
+                    #{businessPhone}
+                </if>
+                            <if test="businessAddress != null and businessAddress != ''">and business_address =
+                    #{businessAddress}
+                </if>
+                            <if test="businessMemo != null and businessMemo != ''">and business_memo =
+                    #{businessMemo}
+                </if>
+                            <if test="createTime != null and createTime != ''">and create_time =
+                    #{createTime}
+                </if>
+                            <if test="updateTime != null and updateTime != ''">and update_time =
+                    #{updateTime}
+                </if>
+                    </where>
+    </select>
+
+    <insert id="save" parameterType="com.dm.trade.business.domain.BusinessDO"            useGeneratedKeys="true" keyProperty="id">
+        insert into dm_business
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                                                                            <if test="contactPeopleName != null">`contact_people_name`                        , </if>
+                                                                <if test="contactPeoplePhone != null">`contact_people_phone`                        , </if>
+                                                                <if test="businessName != null">`business_name`                        , </if>
+                                                                <if test="businessPhone != null">`business_phone`                        , </if>
+                                                                <if test="businessAddress != null">`business_address`                        , </if>
+                                                                <if test="businessMemo != null">`business_memo`                        , </if>
+                                                                <if test="createTime != null">`create_time`                        , </if>
+                                                                <if test="updateTime != null">`update_time`</if>
+                                    </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                                                                            <if test="contactPeopleName != null">#{contactPeopleName}                        , </if>
+                                                                <if test="contactPeoplePhone != null">#{contactPeoplePhone}                        , </if>
+                                                                <if test="businessName != null">#{businessName}                        , </if>
+                                                                <if test="businessPhone != null">#{businessPhone}                        , </if>
+                                                                <if test="businessAddress != null">#{businessAddress}                        , </if>
+                                                                <if test="businessMemo != null">#{businessMemo}                        , </if>
+                                                                <if test="createTime != null">#{createTime}                        , </if>
+                                                                <if test="updateTime != null">#{updateTime}</if>
+                                    </trim>
+    </insert>
+
+    <update id="update" parameterType="com.dm.trade.business.domain.BusinessDO">
+        update dm_business
+        <set>
+                                                                            <if test="contactPeopleName != null">`contact_people_name` = #{contactPeopleName
+                        }, </if>
+                                                                <if test="contactPeoplePhone != null">`contact_people_phone` = #{contactPeoplePhone
+                        }, </if>
+                                                                <if test="businessName != null">`business_name` = #{businessName
+                        }, </if>
+                                                                <if test="businessPhone != null">`business_phone` = #{businessPhone
+                        }, </if>
+                                                                <if test="businessAddress != null">`business_address` = #{businessAddress
+                        }, </if>
+                                                                <if test="businessMemo != null">`business_memo` = #{businessMemo
+                        }, </if>
+                                                                <if test="createTime != null">`create_time` = #{createTime
+                        }, </if>
+                                                                <if test="updateTime != null">`update_time` = #{updateTime
+                        }</if>
+                                    </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from dm_business where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from dm_business where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

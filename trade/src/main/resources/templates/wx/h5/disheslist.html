@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/h5/iconfont.css" media="all">
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/h5/pub.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/h5/style.css" />
+    <script type="text/javascript" src="/static/js/h5/iscroll.js"></script>
+
+    <style>
+        body{
+            font-family: "微软雅黑";
+            font-size: 16px;
+        }
+        .search{
+            padding: 10px 10px;
+            background: #efeff4;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+        .dishes-list{
+            display: flex;
+        }
+        .form-g{
+            align-items: center;
+            justify-content: center;
+            height: 42px;
+            background-color: #fff;
+            border: solid 1px #f1f1f1;
+            border-radius: 4px;
+            line-height: 32px;
+            z-index: 10;
+            position: relative;
+        }
+        .search-icon{
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            padding-right: 10px;
+        }
+        .input-txt{
+            flex-grow: 1;
+            height: 100%;
+            border: none;
+            background: none;
+            line-height: 32px;
+        }
+        .sub-btn{
+            border: none;
+            background: #0f88ff;
+            color: #fff;
+            height: 32px;
+            margin-right: -1px;
+            padding: 0 15px;
+            border-radius: 0 5px 5px 0;
+            float: right;
+        }
+        .dishdetail img{
+            padding-left:5px;
+        }
+
+    </style>
+</head>
+<body>
+<div >
+    <div class="search" >
+        <form class="search-form" action="" method="post" AutoComplete="off" style="display: block;">
+            <div class="form-g" style="display: flex">
+                <span class="search-icon" style="flex: 0.5"><i class="iconfont icon-sousuo"></i></span>
+                <div style="flex: 18"><input class="input-txt" name="dishname"  placeholder="请输入菜品名称" style="width:100%;" /></div>
+                <!--<div style="flex: 1"><input class="sub-btn" type="button" value="搜索" /></div>-->
+            </div>
+        </form>
+    </div>
+    <div class="mg-auto overflow">
+        <!--菜单-->
+        <div class="Menu_box">
+            <!---------左侧菜单---------->
+            <div id="left_Menu">
+                <div class="ot-menu" id="scroller">
+                    <ul>
+                        <li class="active" type="all"><a href="#">全部</a></li>
+                        <li type="3"><a href="#">荤菜</a> </li>
+                        <li type="0"><a href="#">素菜</a> </li>
+                        <li type="2"><a href="#">米饭</a> </li>
+                        <li type="1"><a href="#">饮料</a> </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!---------右侧侧菜单---------->
+            <div id="right_Menu">
+                <div class="menutype" id="scroller2">
+
+                </div>
+            </div>
+
+        </div>
+        <!--菜单end-->
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" charset="utf-8">
+    $(function() {
+        //菜单框架自动获取高度
+        var doc_H=$(document).height();
+        $('.Menu_box').height(doc_H);
+        window.onresize=function(){
+            var doc_H=$(document).height();
+            $('.Menu_box').height(doc_H);
+        };
+
+        loadData();
+
+        //tbl切换
+        $(".ot-menu  li").click(function(){
+            tabIndex = $(this).index();
+            $(this).siblings("li").removeClass("active");
+            $(this).addClass("active");
+            $(".ot-maininfo").children(".menutype").hide();
+            $(".ot-maininfo").children(".menutype").eq(tabIndex).show();
+            loadData();
+        });
+
+        $('span.search-icon').click(function(){
+            loadData();
+        })
+
+    });
+
+
+    var myScroll_left;
+    var myScroll_right;
+    var options = [];
+    function loaded () {
+        myScroll_left = new IScroll('#left_Menu', { mouseWheel: true, click: true });
+        myScroll_right = new IScroll('#right_Menu', { mouseWheel: true, click: true });
+    }
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    function loadData(){
+        $.ajax({
+            url : "/api/relation/h5list",//路径
+            data : {
+                var01:$(".ot-menu  li.active").attr('type'),
+                dishname:$("input[name=dishname]").val()
+            },
+            success : function(result) {//返回数据根据结果进行相应的处理
+                var html="";
+                if(result.code==0){
+                    var data = result.data;
+                    for(var i=0;i<data.length;i++){
+                        var item = data[i];
+                        html+='<div class="item" >'+
+                                    '<div class="item-img">'+
+                                        '<a href="javascript:void(0);">'+
+                                            '<img src="'+item.dishpic+'">'+
+                                        '</a>'+
+                                    '</div>'+
+                                    '<div class="item-desc">'+
+                                        '<div class="name">'+item.dishname+'</div>'+
+                                        '<div class="order">¥'+item.price+'元</div>'+
+                                    '</div>'+
+                                    '<div class="item-ratings">'+
+                                        '<div class="gw_num" id="item_'+item.id+'" data-id="'+item.id+'" data-price="'+item.price+'" data-name="'+item.dishname+'">'+
+                                            '<em class="jian">-</em>'+
+                                            '<input type="text" value="0" class="num"/>'+
+                                            '<em class="add">+</em>'+
+                                        '</div>'+
+                                    '</div>'+
+                            '</div>';
+                    }
+                    $('.menutype').html(html);
+
+                    $(".add").click(function(){
+                        var num = parseInt(
+                            $(this).parent().find('input[type=text]').val())+1;
+                        $(this).parent().find('input[type=text]').val(num);
+                        deal($(this).parent().attr('data-id'),$(this).parent().attr('data-price'),$(this).parent().attr('data-name'),num);
+                    });
+                    $(".jian").click(function(){
+                        var t = $(this).parent().find('input[type=text]');
+                        var num;
+                        if(t.val()>0){
+                            num = parseInt(
+                                t.val())-1;
+                            t.val(num);
+                        }
+                        deal($(this).parent().attr('data-id'),$(this).parent().attr('data-price'),$(this).parent().attr('data-name'),num);
+                    });
+                }
+            }
+        });
+    }
+
+    /**
+     *
+     * @param id
+     * @param price
+     * @param name
+     * @param num
+     * @returns {Array}
+     */
+    function deal(id,price,name,num) {
+        if(options.length>0){
+            for(var i=0;i<options.length;i++){
+                var item0 = options[i];
+                if(id == item0.id){
+                    item0.num = num;
+                    item0.price = item0.num * price;
+                }else{
+                    var item = {};
+                    item.id = id;
+                    item.name = name;
+                    item.num = num;
+                    item.price = item.num * price;
+                    options.push(item);
+                }
+            }
+        }else{
+            var item = {};
+            item.id = id;
+            item.name = name;
+            item.num = num;
+            item.price = item.num * price;
+            options.push(item);
+        }
+
+        return options;
+    }
+    
+    function callbackDeal(options) {
+        for(var i = 0;i<options.length;i++){
+            var item = options[i];
+            $("#item_"+item.id+"").find('input[type=text]').val(item.num);
+        }
+    }
+
+</script>
+
+</html>

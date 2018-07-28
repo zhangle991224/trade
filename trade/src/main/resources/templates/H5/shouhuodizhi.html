@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>收货地址</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<script type="text/javascript" src="/js/jquery-1.8.1.js"></script>
+<script type="text/javascript" src="/js/fontsize.js"></script>
+</head>
+<body>
+<div class="nav">
+	<a class="weizhi" href="javascript:window.history.back(-1)" > <img src="/img/images/zuo.png" alt=""></a>
+	<p>收货地址</p>
+</div>
+<div class="login12">
+	<form>
+		<label>
+			<div>
+				<span>收货人：</span>
+				<input id="linkman" type="text" placeholder="请输入收货人名称" >
+			</div>
+		</label>
+		<label>
+			<div>
+				<span>手机号：</span>
+				<input id="phone_numb" type="text" placeholder="请输入手机号" >
+			</div>
+		</label>
+		<label>
+			<div>
+				<span>详细地址：</span>
+				<input id="address" type="text" placeholder="请输入详细地址" >
+			</div>
+		</label>
+		<label>
+			<div>
+				<span>具体房号：</span>
+				<input id="youbian" type="text" placeholder="请输入几栋几杠几" >
+			</div>
+		</label>
+	</form>
+</div>
+<div class="tijiao" id="tijiao">
+	<a href="#">保存收货地址</a>
+</div>
+</body>
+
+<script type="text/javascript">
+	
+	 $(document).ready(function () {
+		 var html='';
+		        $.ajax({
+		            type: "POST",
+		            url: "/api/CustnmerH5/shouhuodizhi_h5_list",
+		            data: $('#signupForm').serialize(),//用户id
+		            success: function (data) {
+		            $("#linkman").val(''+data.data.linkMan+'');
+		            $("#phone_numb").val(''+data.data.linkPhone+'');
+		            $("#address").val(''+data.data.address+'');
+	            }
+		        });
+		    
+	 });
+		</script>
+	</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/h5/iconfont.css" media="all">
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/h5/pub.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/h5/style.css" />
+    <script type="text/javascript" src="/static/js/h5/iscroll.js"></script>
+
+    <style>
+        body{
+            font-family: "微软雅黑";
+            font-size: 16px;
+        }
+        .dishdetail img{
+            padding-left:5px;
+        }
+
+    </style>
+</head>
+<body>
+<div >
+
+    <div class="mg-auto overflow">
+            <!---------右侧侧菜单---------->
+            <div  th:each="item:${lists}">
+                <div class="menutype" id="scroller2" style="border-bottom:5px solid #dbdbdb;padding-bottom: 10px">
+                    <div class="item">
+                        <div class="item-img">
+                            <a href="javascript:void(0);">
+                                <img th:src="${item.var04}">
+                            </a>
+                        </div>
+                    <div class="item-desc">
+                        <div class="name" th:text="${item.var03}"></div>
+                        <div class="order" th:text="'x'+${item.dishnum}"></div>
+                        </div>
+                    <div class="item-ratings">
+                        <div >
+                            <span th:text="'¥'+${item.var02}"></span>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+
+</body>
+
+
+</html>

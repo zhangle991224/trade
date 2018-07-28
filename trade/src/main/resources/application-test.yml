@@ -1,0 +1,7 @@
+trade:
+  uploadPath: /var/dm-trade/uploaded_files/
+  othersPath: /var/dm-trade/others/
+logging:
+  level:
+    root: INFO
+  file: /var/dm-trade/log/dm-trad.log

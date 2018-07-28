@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dm.trade.order.dao.OrderDao">
+
+    <select id="get" resultType="com.dm.trade.order.domain.OrderDO">
+		select `id`,`totalMoney`,`customer_id`,`is_paid`,`pay_type`,`pay_time`,`address_id`,`status`,`create_time`,`update_time`,`remark`,`var01`,`var02`,`var03` from dm_order where id = #{value}
+	</select>
+
+    <select id="list" resultType="com.dm.trade.order.domain.OrderDO">
+        select
+        `id`,`totalMoney`,`customer_id`,`is_paid`,`pay_type`,`pay_time`,`address_id`,`status`,`create_time`,`update_time`,`remark`,`var01`,`var02`,`var03`
+        from dm_order
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="totalmoney != null and totalmoney != ''">and totalMoney = #{totalmoney}</if>
+            <if test="customerId != null and customerId != ''">and customer_id = #{customerId}</if>
+            <if test="isPaid != null and isPaid != ''">and is_paid = #{isPaid}</if>
+            <if test="payType != null and payType != ''">and pay_type = #{payType}</if>
+            <if test="payTime != null and payTime != ''">and pay_time = #{payTime}</if>
+            <if test="addressId != null and addressId != ''">and address_id = #{addressId}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="remark != null and remark != ''">and remark = #{remark}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+        </where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="count" resultType="int">
+        select count(*) from dm_order
+        <where>
+            <if test="id != null and id != ''">and id = #{id}</if>
+            <if test="totalmoney != null and totalmoney != ''">and totalMoney = #{totalmoney}</if>
+            <if test="customerId != null and customerId != ''">and customer_id = #{customerId}</if>
+            <if test="isPaid != null and isPaid != ''">and is_paid = #{isPaid}</if>
+            <if test="payType != null and payType != ''">and pay_type = #{payType}</if>
+            <if test="payTime != null and payTime != ''">and pay_time = #{payTime}</if>
+            <if test="addressId != null and addressId != ''">and address_id = #{addressId}</if>
+            <if test="status != null and status != ''">and status = #{status}</if>
+            <if test="createTime != null and createTime != ''">and create_time = #{createTime}</if>
+            <if test="updateTime != null and updateTime != ''">and update_time = #{updateTime}</if>
+            <if test="remark != null and remark != ''">and remark = #{remark}</if>
+            <if test="var01 != null and var01 != ''">and var01 = #{var01}</if>
+            <if test="var02 != null and var02 != ''">and var02 = #{var02}</if>
+            <if test="var03 != null and var03 != ''">and var03 = #{var03}</if>
+        </where>
+    </select>
+
+    <insert id="save" parameterType="com.dm.trade.order.domain.OrderDO" useGeneratedKeys="true" keyProperty="id">
+        insert into dm_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">`id`,</if>
+            <if test="totalmoney != null">`totalMoney`,</if>
+            <if test="customerId != null">`customer_id`,</if>
+            <if test="isPaid != null">`is_paid`,</if>
+            <if test="payType != null">`pay_type`,</if>
+            <if test="payTime != null">`pay_time`,</if>
+            <if test="addressId != null">`address_id`,</if>
+            <if test="status != null">`status`,</if>
+            <if test="createTime != null">`create_time`,</if>
+            <if test="updateTime != null">`update_time`,</if>
+            <if test="remark != null">`remark`,</if>
+            <if test="var01 != null">`var01`,</if>
+            <if test="var02 != null">`var02`,</if>
+            <if test="var03 != null">`var03`</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="totalmoney != null">#{totalmoney},</if>
+            <if test="customerId != null">#{customerId},</if>
+            <if test="isPaid != null">#{isPaid},</if>
+            <if test="payType != null">#{payType},</if>
+            <if test="payTime != null">#{payTime},</if>
+            <if test="addressId != null">#{addressId},</if>
+            <if test="status != null">#{status},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="var01 != null">#{var01},</if>
+            <if test="var02 != null">#{var02},</if>
+            <if test="var03 != null">#{var03}</if>
+        </trim>
+    </insert>
+
+    <update id="update" parameterType="com.dm.trade.order.domain.OrderDO">
+        update dm_order
+        <set>
+            <if test="totalmoney != null">`totalMoney` = #{totalmoney},</if>
+            <if test="customerId != null">`customer_id` = #{customerId},</if>
+            <if test="isPaid != null">`is_paid` = #{isPaid},</if>
+            <if test="payType != null">`pay_type` = #{payType},</if>
+            <if test="payTime != null">`pay_time` = #{payTime},</if>
+            <if test="addressId != null">`address_id` = #{addressId},</if>
+            <if test="status != null">`status` = #{status},</if>
+            <if test="createTime != null">`create_time` = #{createTime},</if>
+            <if test="updateTime != null">`update_time` = #{updateTime},</if>
+            <if test="remark != null">`remark` = #{remark},</if>
+            <if test="var01 != null">`var01` = #{var01},</if>
+            <if test="var02 != null">`var02` = #{var02},</if>
+            <if test="var03 != null">`var03` = #{var03}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="remove">
+		delete from dm_order where id = #{value}
+	</delete>
+
+    <delete id="batchRemove">
+        delete from dm_order where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>
