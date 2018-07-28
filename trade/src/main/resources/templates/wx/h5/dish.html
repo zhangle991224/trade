@@ -22,7 +22,7 @@
     <article class="scrolling">
       <div class="content scroller">
         <div class="a0x a0y">
-          <div class="wf a2" style="position: fixed;">
+          <div class="wf a2" style="position: fixed;background: url(/img/h5_img/img/head-bg.jpg)">
             <input type="hidden" name="tokencode" th:value="${tag}"/>
             <input type="hidden" name="tagcode" th:value="${tagcode}"/>
             <div class="wk ">
@@ -70,7 +70,7 @@
         </div>
       </div>
     </article>
-    <div class="a4q" style="">
+    <div class="a4q" style="bottom: 8.8%;">
       <div class="a53">
         <p class="a54" hidegatherlist=""></p>
         <ul class="a55"></ul>
@@ -132,27 +132,23 @@
     </div>
   </div>
 </div>
-
+<div class="" style="z-index: 99999;position: absolute;bottom: 0;width: 100%;background-color: #fff">
+  <a href="/api/relation/h5list" class="weui-tabbar__item weui-bar__item--on"style="float: left; width: 49%;    text-align: center">
+    <div class="weui-tabbar__icon">
+      <img src="/img/h5_img/img/svg/foot-2-1.png" alt="">
+    </div>
+    <p class="weui-tabbar__label">分类</p>
+  </a>
+  <a href="/api/CustnmerH5/home_h5" class="weui-tabbar__item"style="float: left; width: 49%;    text-align: center">
+    <div class="weui-tabbar__icon">
+      <img src="/img/h5_img/img/svg/foot-5.png" alt="">
+    </div>
+    <p class="weui-tabbar__label"id="my_home" >我的</p>
+  </a>
+</div>
 <div class="a0b" style="display:none;" node-type="bottomMenuBigBg"></div>
 <a class="a0a" clicktotop="" href="javascript:void 0;" style="bottom: 48px; display: none;"></a>
 </body>
-     <div class="" style="z-index: 99999;position: absolute;bottom: 0;width: 100%;background-color: #fff">
-            <a href="/api/relation/h5list" class="weui-tabbar__item weui-bar__item--on"style="float: left; width: 49%;    text-align: center">
-                <div class="weui-tabbar__icon">
-                    <img src="/img/h5_img/img/svg/foot-2-1.png" alt="">
-                </div>
-                <p class="weui-tabbar__label">分类</p>
-            </a>
-            <a href="/api/CustnmerH5/home_h5" class="weui-tabbar__item"style="float: left; width: 49%;    text-align: center">
-                <div class="weui-tabbar__icon">
-                    <img src="/img/h5_img/img/svg/foot-5.png" alt="">
-                </div>
-                <p class="weui-tabbar__label"id="my_home" >我的</p>
-            </a>
-        </div>
-    <div class="a0b" style="display:none;" node-type="bottomMenuBigBg"></div>
-    <a class="a0a" clicktotop="" href="javascript:void 0;" style="bottom: 48px; display: none;"></a>
-  </body>
 
 <script type="text/javascript" charset="utf-8">
 
